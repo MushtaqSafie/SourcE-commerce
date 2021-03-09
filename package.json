@@ -4,15 +4,17 @@
   "description": "A collaboration group project...",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run lint",
     "start": "node server.js",
+    "lint": "eslint --quiet .",
+    "fix": "eslint --fix .",
     "watch": "nodemon server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MissNG-Git/Project2.git"
   },
-  "author": "MissNG-Git",
+  "author": "MissNG-Git, ffakih5, FraserClarke & MushtaqSafie ",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/MissNG-Git/Project2/issues"
@@ -25,6 +27,9 @@
   },
   "devDependencies": {
     "eslint": "^7.21.0",
-    "nodemon": "^2.0.7"
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.2",
+    "nodemon": "^2.0.7",
+    "prettier": "^1.13.7"
   }
 }

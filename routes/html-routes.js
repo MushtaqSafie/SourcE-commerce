@@ -14,7 +14,7 @@ router.get('/create-account', (req, res) => {
 
   const obj = { "db": "data" };
   console.log('obj', obj);
-  res.render('index', obj)
+  res.render('createAccount', obj)
 
 
 });

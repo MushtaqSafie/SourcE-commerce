@@ -1,10 +1,10 @@
 const express = require("express");
-const db = require('../models');
+const db = require("../models");
 
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  db.Customer.findAll({}).then((data) => {
+  db.Customer.findAll({}).then(data => {
     console.log(data);
     res.render("index", { customer: data });
   });

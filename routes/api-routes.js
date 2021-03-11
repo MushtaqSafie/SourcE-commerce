@@ -1,7 +1,5 @@
-const db = require("../models");
+// const db = require("../models");
 
-router.post('/api/products', (req, res) => {
+// router.post("/api/products", (req, res) => {});
 
-});
-
-module.exports = router
+module.exports = router;

@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
-  Customer.associate = (models) => {
+  Customer.associate = models => {
     Customer.hasMany(models.Orders, {});
   };
 

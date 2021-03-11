@@ -31,4 +31,3 @@ app.use(htmlRouter);
 db.sequelize.sync({ force: true }).then(() => {
   app.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
 });
-

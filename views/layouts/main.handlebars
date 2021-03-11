@@ -2,25 +2,55 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-        crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css" type="text/css" />
-    <title>SourcE-commerce Login Page</title>
-
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <title>SourcE-commerce Login Page</title>
 </head>
 
-
 <body>
-    {{{ body }}}
+  <div class="wrapper">
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <h3>SourcE-commerce</h3>
+      </div>
+
+      <img src="{{user-image}}" alt="user-img" />
+      <h2>{{username}}</h2>
+
+      <ul class="list-unstyled components">
+        {{#each client-type}}
+        {{#if business-owner}}
+        <li class="active">
+          <a href="#Sales">Sales</a>
+        </li>
+        <li>
+          <a href="Inventory">Inventory</a>
+        </li>
+        {{/if}}
+        {{/each}}
+
+        {{#each client-type}}
+        {{#if customer}}
+        <li>
+          <a href="Storefront">Storefront</a>
+        </li>
+        {{/if}}
+        {{/each}}
+      </ul>
+    </nav>
+  </div>
+
+  {{{ body }}}
 </body>
 
 </html>

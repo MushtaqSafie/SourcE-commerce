@@ -1,29 +1,29 @@
 module.exports = (sequelize, DataTypes) => {
-  const Customer = sequelize.define('Customer', {
+  const Customer = sequelize.define("Customer", {
     first_name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     last_name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     city: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: true
     },
     state: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: true
     },
     zip_code: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: true
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false,
-    },
+      allowNull: false
+    }
   });
 
   // Author.associate = (models) => {

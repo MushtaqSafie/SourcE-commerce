@@ -1,23 +1,17 @@
-const express = require('express');;
+const express = require("express");
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-
-  const obj = { "db": "data" };
-  console.log('obj', obj);
-  res.render('index', obj)
-
+router.get("/", (req, res) => {
+  const obj = { db: "data" };
+  console.log("obj", obj);
+  res.render("index", obj);
 });
 
-router.get('/create-account', (req, res) => {
-
-  const obj = { "db": "data" };
-  console.log('obj', obj);
-  res.render('index', obj)
-
-
+router.get("/create-account", (req, res) => {
+  const obj = { db: "data" };
+  console.log("obj", obj);
+  res.render("index", obj);
 });
 
-
-module.exports = router
+module.exports = router;

@@ -26,7 +26,7 @@ app.set('view engine', 'handlebars');
 // htmlRouter(app);
 // apiRouter(app);
 app.use(htmlRouter);
-// app.use(apiRouter);
+app.use(apiRouter);
 
 // Syncing our sequelize models and then starting our Express app
 // !! REMOVE "{ force: true }" @ deployment !!

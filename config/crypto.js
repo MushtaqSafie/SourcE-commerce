@@ -34,11 +34,13 @@ app.use((req, res, next) => {
     next();
 });
 
-app.engine('hbs', exphbs({
+/* app.engine('hbs', exphbs({
     extname: '.hbs'
-}));
+ })); 
 
 app.set('view engine', 'hbs');
+
+*/
 
 app.get('/', (req, res) => {
     res.render('home');

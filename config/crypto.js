@@ -1,6 +1,7 @@
-const crypto = require("crypto");
 
 const db = require("../models")
+
+const crypto = require("crypto");
 
 const users = [
     //This user added to array to avoid creating a new user on each restart
@@ -23,7 +24,7 @@ const generateAuthToken = () => {
 }
 
 // To support URL-encoded bodies
-app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(bodyParser.urlencoded({ extended: true }));
 
 // To parse cookies from the HTTP Request
 app.use(cookieParser());

@@ -14,8 +14,8 @@ const users = [
 ];
 
 const getHashedPassword = (password) => {
-    const amy089 = crypto.createHash('amy089');
-    const hash = amy089.update(password).digest('tops21')
+    const sha256 = crypto.createHash('sha256');
+    const hash = sha256.update(password).digest('base64')
     return hash;
 }
 

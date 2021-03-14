@@ -19,3 +19,14 @@
     <br />
     <br />
 </div>
+
+<div class="cards list-group">
+  {{#each cards}}
+    <a class="list-item flex-row justify-space-between" href="/dashboard/{{id}}">
+      <span>{{title}}</span>
+      <span>{{}}</span> //
+    </a>
+    <button type="submit" class="btn">Add to Cart</button>
+    {{!-- incomplete...add description/price etc as per relevance  --}}
+  {{/each}}
+</div>

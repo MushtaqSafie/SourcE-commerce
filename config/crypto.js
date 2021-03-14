@@ -1,7 +1,7 @@
 
 const db = require("../models")
 
-const crypto = require("crypto");
+const cryptoJS = require("crypto-js");
 
 const users = [
     //This user added to array to avoid creating a new user on each restart
@@ -24,4 +24,4 @@ const generateAuthToken = () => {
 }
 
 
-module.exports = crypto;
+module.exports = cryptoJS;

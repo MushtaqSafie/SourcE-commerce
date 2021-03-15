@@ -1,55 +1,46 @@
 <div class="row">
-  <div class="col-auto">
-    <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src="https://via.placeholder.com/50" alt="Card image cap" />
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">
-          Item description
-        </p>
-        <a href="#" class="btn btn-primary">Add to Cart</a>
-      </div>
+    <div class="col-auto">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="https://via.placeholder.com/50" alt="Card image cap" />
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                    Item description
+                </p>
+                <a href="#" class="btn btn-primary">Add to Cart</a>
+            </div>
+        </div>
+        {{!-- <br />
+        <br /> --}}
+
+
+        <div class="cards list-group">
+            {{#each cards}}
+            <a class="list-item flex-row justify-space-between" href="/dashboard/{{id}}">
+                <span>{{title}}</span>
+                <span>{{}}</span> //
+            </a>
+            <button type="submit" class="btn">Add to Cart</button>
+            {{!-- incomplete...add description/price etc as per relevance --}}
+            {{/each}}
+        </div>
     </div>
-    {{!-- <br />
-    <br /> --}}
-
-
-    <div class="cards list-group">
-      {{#each cards}}
-      <a class="list-item flex-row justify-space-between" href="/dashboard/{{id}}">
-        <span>{{title}}</span>
-        <span>{{}}</span> //
-      </a>
-      <button type="submit" class="btn">Add to Cart</button>
-      {{!-- incomplete...add description/price etc as per relevance --}}
-      {{/each}}
-    </div>
-  </div>
-</div>
-
-<div class="cards list-group">
-  {{#each cards}}
-
-    <a class="list-item flex-row justify-space-between" href="/dashboard/{{id}}">
-      <span>{{title}}</span>
-      <span>{{}}</span> //
-    </a>
-    <button type="submit" class="btn">Add to Cart</button>
-    {{!-- incomplete...add description/price etc as per relevance  --}}
-  {{/each}}
 </div>
 
 
+
+<script src="js/storeFront.js"></script>
 {{!-- <div class="col-md-3">
-        <h2>Devoured Burger!</h2>
+    <h2>Devoured Burger!</h2>
 
-        <ul>
-            {{#each burgers}}
-            {{#if devoured}}
-            <li>{{burger_name}}</li>
-            {{!-- {{> burgers/burger-block devoured=false}} --}}
-            {{!-- {{/if}}
-            {{/each}} --}}
-        {{!-- </ul>
-    </div>
+    <ul>
+        {{#each burgers}}
+        {{#if devoured}}
+        <li>{{burger_name}}</li>
+        {{!-- {{> burgers/burger-block devoured=false}} --}}
+        {{!-- {{/if}}
+        {{/each}} --}}
+        {{!--
+    </ul>
+</div>
 </div> --}} --}}

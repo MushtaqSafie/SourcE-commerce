@@ -1,7 +1,7 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
 const htmlRouter = require("./routes/html-routes.js");
-// const apiRouter = require("./routes/api-routes.js");
+const apiRouter = require("./routes/api-routes.js");
 
 // Sets up the Express App
 const app = express();
@@ -21,10 +21,8 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // Invoke routes
-// htmlRouter(app);
-// apiRouter(app);
 app.use(htmlRouter);
-// app.use(apiRouter);
+app.use(apiRouter);
 
 // Syncing our sequelize models and then starting our Express app
 // !! REMOVE "{ force: true }" @ deployment !!

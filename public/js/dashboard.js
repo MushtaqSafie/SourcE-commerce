@@ -1,3 +1,7 @@
+{
+  /* <script>
+  document.addEventListener("DOMContentLoaded", () => { */
+}
 // module.exports = (Highcharts, DataTypes) => {
 const salesLineChart = Highcharts.chart("container", {
   chart: {
@@ -28,3 +32,5 @@ const salesLineChart = Highcharts.chart("container", {
 
 return salesLineChart;
 // };
+// });
+// </script>

@@ -29,8 +29,6 @@
     />
     <link rel="stylesheet" href="css/style.css" type="text/css" />
     <title>SourcE-commerce Create Account</title>
-
-    <script src="js/create.js"></script>
   </head>
 
   <body>
@@ -39,7 +37,7 @@
     </header>
     <div class="container">
       <div class="col-auto">
-        <form>
+        <form id="create-form">
           <div class="form-group">
             <label for="first-name">First Name</label>
             <input
@@ -100,11 +98,11 @@
             />
           </div>
           <div class="form-group">
-            <label for="confirmpPasswordInput">Re-Enter Password</label>
+            <label for="confirmPasswordInput">Re-Enter Password</label>
             <input
               type="password"
               class="form-control"
-              id="confirmpPasswordInput"
+              id="confirmPasswordInput"
               placeholder="Password"
             />
           </div>
@@ -117,5 +115,6 @@
       <br />
       <br />
     </div>
+    <script src="js/create.js"></script>
   </body>
 </html>

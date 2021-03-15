@@ -17,8 +17,8 @@
         <div class="cards list-group">
             {{#each cards}}
             <a class="list-item flex-row justify-space-between" href="/dashboard/{{id}}">
-                <span>{{title}}</span>
-                <span>{{}}</span> //
+                <span>{{Products.product_name}}</span>
+                <span>{{product.name}}</span> //
             </a>
             <button type="submit" class="btn">Add to Cart</button>
             {{!-- incomplete...add description/price etc as per relevance --}}

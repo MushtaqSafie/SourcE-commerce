@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", event => {
   }
 
   //call event in brackets.
-  const id = $(this).data("id");
+  //const id = $(this).data("id");
   fetch(`/api/storefront/${id}`, {
     method: "GET",
 
@@ -17,9 +17,9 @@ document.addEventListener("DOMContentLoaded", event => {
     })
   });
 
-  $(".cartBtn").on("click", function() {
+  $(".cartBtn").on("click", () => {
     //call event in brackets.
-    const id = $(this).data("id");
+    //const id = $(this).data("id");
     fetch(`/api/storefront/${id}`, {
       method: "PUT",
       headers: {

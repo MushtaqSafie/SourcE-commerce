@@ -12,15 +12,12 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Orders.associate = models => {
-    Orders.belongsTo(models.Products, {
+    Orders.belongsTo(models.Customer, {
       foreignKey: {
         allowNull: false
       }
     });
-  };
-
-  Orders.associate = models => {
-    Orders.belongsTo(models.Customer, {
+    Orders.belongsTo(models.Products, {
       foreignKey: {
         allowNull: false
       }

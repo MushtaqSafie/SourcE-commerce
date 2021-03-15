@@ -1,5 +1,11 @@
+const express = require("express");
 const db = require("../models");
-const crypto = require("crypto")
+
+const router = express.Router();
+
+db.Customer.findAll({}).then(data => {
+  console.log(data);
+});
 
 router.get('/', (req, res) => {
   res.render('main');
@@ -12,17 +18,17 @@ router.get('/index', (req, res) => {
 router.post('/index', (req, res) => {
   const { email, password } = req.body;
   const hashedPassword = getHashedPassword(password);
-  const user = users.find(u => {
-    return u.email === email && hashedPassword === u.password
+  const customer = customers.find(c => {
+    return c.email === email && hashedPassword === c.password
   });
 
-  if (user) {
+  if (customer) {
     const authToken = generateAuthToken();
 
     authTokens[authToken] = email;
 
     res.cookie('AuthToken', authToken);
-    res.redirect('/protected')
+    res.redirect('/salesDash')
     return;
   } else {
     res.render('/index', {
@@ -37,13 +43,13 @@ router.get('/createAccount', (req, res) => {
 });
 
 router.post('/createAccount', (req, res) => {
-  const { email, firstName, lastName, password, confirmPasword } = req.body;
+  const { email, firstName, lastName, password, confirmPassword } = req.body;
 
   // Check if the password and confirm password fields match
-  if (password === confirmPasword) {
+  if (password === confirmPassword) {
 
     //Check if user with the same email is registered
-    if (users.find(user => user.email === email)) {
+    if (customers.find(customers => customer.email === email)) {
 
       res.render('createAccount', {
         message: 'User already created.',
@@ -54,7 +60,7 @@ router.post('/createAccount', (req, res) => {
     } const hashedPassword = getHashedPassword(password);
 
     //Store user into database
-    users.push({
+    customers.push({
       firstName,
       lastName,
       email,
@@ -73,9 +79,10 @@ router.post('/createAccount', (req, res) => {
   }
 });
 
-router.get('/protected', (req, res) => {
-  if (req.user) {
-    res.render('/protected');
+router.get('/salesDash', (req, res) => {
+  if (req.customer) {
+    //res.render('/protected');
+    console.log("reached");
   } else {
     res.render('/index', {
       message: 'Please login to continue',
@@ -83,4 +90,5 @@ router.get('/protected', (req, res) => {
     });
   }
 });
+
 module.exports = router;

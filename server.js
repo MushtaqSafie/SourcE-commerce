@@ -1,9 +1,11 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
 const htmlRouter = require("./routes/html-routes.js");
-//const apiRouter = require("./routes/api-routes.js")
+const apiRouter = require("./routes/api-routes.js");
+const cookieParser = require('cookie-parser');
+//const bodyParser = require('body-parser');
 
-const crypto = require("./config/crypto");
+//const crypto = require("./config/crypto");
 
 // Sets up the Express App
 const app = express();
@@ -31,11 +33,10 @@ app.use(apiRouter);
 app.use(cookieParser());
 
 app.use((req, res, next) => {
-  const authToken = req.cookies['AuthToken'];
+  const authToken = req.cookies["AuthToken"];
   req.user = authTokens[authToken];
   next();
 });
-
 
 // Syncing our sequelize models and then starting our Express app
 // !! REMOVE "{ force: true }" @ deployment !!

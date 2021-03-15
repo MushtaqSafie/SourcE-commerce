@@ -1,7 +1,6 @@
+const db = require("./seed.js")
 
-const db = require("../models")
-
-const cryptoJS = require("crypto-js");
+//const cryptoJS = require("crypto-js");
 
 const users = [
     //This user added to array to avoid creating a new user on each restart

@@ -1,11 +1,9 @@
-<script src="js/login.js"></script>
-
 <header>
   <h1>Login Page</h1>
 </header>
 <div class="container">
   <div class="col-auto">
-    <form>
+    <form id="login-form">
       <div class="form-group">
         <label for="email-address">Email address</label>
         <input type="email" class="form-control" id="email-address" aria-describedby="emailHelp"
@@ -26,12 +24,14 @@
       </div>
       <br>
       <br>
-      <button type="submit" class="btn btn-primary">Login</button>
+      <button type="submit" class="btn btn-primary" id="submitBtn">Login</button>
     </form>
 
   </div>
   <br>
   <br>
   <button type="button" class="btn btn-outline-dark">Create Account</button>
+
+  <script src="js/login.js"></script>
 
 </div>

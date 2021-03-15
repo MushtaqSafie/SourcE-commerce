@@ -3,6 +3,7 @@ const db = require("../models");
 
 const router = express.Router();
 
+<<<<<<< HEAD
 db.Customer.findAll({}).then(data => {
   console.log(data);
 });
@@ -89,6 +90,32 @@ router.get('/salesDash', (req, res) => {
       messageClass: 'alert-danger'
     });
   }
+=======
+router.get("/api/customers", (req, res) => {
+  db.Customer.findAll().then(data => {
+    const obj = data;
+    console.log(obj);
+    res.json(data);
+  });
+});
+
+router.get("/api/products", (req, res) => {
+  db.Products.findAll().then(data => {
+    const obj = data;
+    console.log(obj);
+    res.json(data);
+  });
+});
+
+router.get("/api/orders", (req, res) => {
+  db.Orders.findAll({
+    include: [db.Products, db.Customer]
+  }).then(data => {
+    const obj = data;
+    console.log(obj);
+    res.json(data);
+  });
+>>>>>>> 97c261bbeb61566d6c6e6d6230b580fa9657dc94
 });
 
 module.exports = router;

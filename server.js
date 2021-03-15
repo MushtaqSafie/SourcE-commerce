@@ -26,8 +26,6 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // Invoke routes
-// htmlRouter(app);
-// apiRouter(app);
 app.use(htmlRouter);
 app.use(apiRouter);
 

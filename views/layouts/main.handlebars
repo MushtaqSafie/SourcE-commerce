@@ -25,6 +25,7 @@
       </div>
 
       <img src="{{user-image}}" alt="user-img" />
+<<<<<<< HEAD
       <h2>{{username}}</h2>
 
       <ul class="list-unstyled components">
@@ -35,6 +36,18 @@
         </li>
         <li>
           <a href="Inventory">Inventory</a>
+=======
+
+      <ul class="list-unstyled components">
+        <p>{{username}}</p>
+        {{#each client-type}}
+        {{#if business-owner}}
+        <li class="active">
+          <a href="dashboard.html">Sales</a>
+        </li>
+        <li>
+          <a href="inventory.html">Inventory</a>
+>>>>>>> 97c261bbeb61566d6c6e6d6230b580fa9657dc94
         </li>
         {{/if}}
         {{/each}}
@@ -48,9 +61,24 @@
         {{/each}}
       </ul>
     </nav>
+<<<<<<< HEAD
   </div>
 
   {{{ body }}}
+=======
+
+    <div id="content">
+      <header>
+        <h1>{{heading}}</h1>
+      </header>
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          {{{ body }}}
+        </div>
+      </nav>
+    </div>
+>>>>>>> 97c261bbeb61566d6c6e6d6230b580fa9657dc94
 </body>
 
 </html>

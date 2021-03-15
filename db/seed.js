@@ -71,7 +71,6 @@ const orders = [
   }
 ];
 
-
 function readImageFile(file) {
   // read binary data from a file:
   const bitmap = fs.readFileSync(file);

@@ -21,6 +21,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     product_image: {
       type: DataTypes.BLOB("long")
+    },
+    product_url: {
+      type: DataTypes.STRING
     }
   });
 

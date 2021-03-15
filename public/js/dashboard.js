@@ -1,18 +1,22 @@
+{
+  /* <script>
+  document.addEventListener("DOMContentLoaded", () => { */
+}
 // module.exports = (Highcharts, DataTypes) => {
 const salesLineChart = Highcharts.chart("container", {
   chart: {
-    type: "line"
+    type: "line",
   },
   title: {
-    text: "Weekly Sales Performance"
+    text: "Weekly Sales Performance",
   },
   xAxis: {
-    type: "datetime"
+    type: "datetime",
   },
   yAxis: {
     title: {
-      text: "$ Weekly Earnings $"
-    }
+      text: "$ Weekly Earnings $",
+    },
   },
   series: [
     {
@@ -21,10 +25,12 @@ const salesLineChart = Highcharts.chart("container", {
       data: [10, 5, 35, 25, 15, 60, 40],
       pointStart: Date.UTC(2021, 1, 7),
       // for one week intervals, add "* 7" at end
-      pointInterval: 24 * 3600 * 1000
-    }
-  ]
+      pointInterval: 24 * 3600 * 1000,
+    },
+  ],
 });
 
 return salesLineChart;
 // };
+// });
+// </script>

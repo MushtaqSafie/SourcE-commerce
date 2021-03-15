@@ -1,38 +1,41 @@
 module.exports = (sequelize, DataTypes) => {
-  const Customer = sequelize.define('Customer', {
+  const Customer = sequelize.define("Customer", {
     first_name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     last_name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     city: {
-      type: DataTypes.STRING,
-      allowNull: true,
+      type: DataTypes.STRING
     },
     state: {
-      type: DataTypes.STRING,
-      allowNull: true,
+      type: DataTypes.STRING
     },
     zip_code: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
+      type: DataTypes.INTEGER
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
+    user_password: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    // option [buyer , buyer/seller]
+    customer_status: {
+      type: DataTypes.ENUM,
+      values: ["buyer", "buyer/seller"],
+      allowNull: false
+    }
   });
 
-  // Author.associate = (models) => {
-  //   // Associating Author with Posts
-  //   // When an Author is deleted, also delete any associated Posts
-  //   Author.hasMany(models.Post, {
-  //     onDelete: 'cascade',
-  //   });
-  // };
+  Customer.associate = models => {
+    Customer.hasMany(models.Orders, {});
+  };
 
   return Customer;
 };

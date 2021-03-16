@@ -3,10 +3,6 @@ const db = require("../models");
 
 const router = express.Router();
 
-db.Customer.findAll({}).then(data => {
-  console.log(data);
-});
-
 router.get('/', (req, res) => {
   res.render('main');
 });

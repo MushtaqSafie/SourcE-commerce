@@ -1,76 +1,21 @@
-<<<<<<< HEAD
-<script src="js/storeFront.js"></script>
-<header>
-    <h1>Storefront</h1>
-</header>
-<div class="container">
-    <div class="col-auto">
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="https://via.placeholder.com/50" alt="Card image cap" />
-
-=======
 <div class="row">
-    <div class="col-auto">
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="https://via.placeholder.com/50" alt="Card image cap" />
->>>>>>> 97c261bbeb61566d6c6e6d6230b580fa9657dc94
+    <div class="col-auto products">
+        {{#each products}}
+        <div class="col-auto card" style="width: 18rem;">
+            <img class="card-img-top" src="{{dataValues.product_url}}" alt="Card image cap" />
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">{{dataValues.product_name}}</h5>
                 <p class="card-text">
-                    Item description
+                    {{dataValues.product_description}}
                 </p>
+                <p class="card-text">{{dataValues.selling_price}}
+                </p>
+                <p class="card-text">Only {{dataValues.inventory}} left!</p>
                 <a href="#" class="btn btn-primary">Add to Cart</a>
             </div>
         </div>
-<<<<<<< HEAD
-    </div>
-    <br />
-    <br />
-</div>
-
-<div class="cards list-group">
-  {{#each cards}}
-    <a class="list-item flex-row justify-space-between" href="/dashboard/{{id}}">
-      <span>{{title}}</span>
-      <span>{{}}</span> //
-    </a>
-    <button type="submit" class="btn">Add to Cart</button>
-    {{!-- incomplete...add description/price etc as per relevance  --}}
-  {{/each}}
-</div>
-=======
-        {{!-- <br />
-        <br /> --}}
-
-
-        <div class="cards list-group">
-            {{#each cards}}
-            <a class="list-item flex-row justify-space-between" href="/dashboard/{{id}}">
-                <span>{{title}}</span>
-                <span>{{}}</span> //
-            </a>
-            <button type="submit" class="btn">Add to Cart</button>
-            {{!-- incomplete...add description/price etc as per relevance --}}
-            {{/each}}
-        </div>
+        {{/each}}
     </div>
 </div>
-
-
 
 <script src="js/storeFront.js"></script>
-{{!-- <div class="col-md-3">
-    <h2>Devoured Burger!</h2>
-
-    <ul>
-        {{#each burgers}}
-        {{#if devoured}}
-        <li>{{burger_name}}</li>
-        {{!-- {{> burgers/burger-block devoured=false}} --}}
-        {{!-- {{/if}}
-        {{/each}} --}}
-        {{!--
-    </ul>
-</div>
-</div> --}} --}}
->>>>>>> 97c261bbeb61566d6c6e6d6230b580fa9657dc94

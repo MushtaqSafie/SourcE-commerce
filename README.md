@@ -1,11 +1,11 @@
-# 15-16 Project #2 w/Awesome-Sauces
+# 15-16 Project #2 w/Awesome-Sauce
 
 ## ⋘ ──── ∗⋅◦∘◈\[[SourcE-commerce](https://sourc3-commerce.herokuapp.com)\]◈∘◦⋅∗ ──── ⋙
 by [MissNG-Git](https://github.com/MissNG-Git) | [FraserClarke](https://github.com/FraserClarke/) | [ffakih5](https://github.com/ffakih5) | [MushtaqSafie](https://github.com/MushtaqSafie)
 
-A collaboration project proudly brought to you by Team **Awesome-Sauces**, _[SourcE-commerce](https://sourc3-commerce.herokuapp.com)_ is an application that will help business owners track inventory & sales performance as well as provide an e-commerce storefront for customers! This app will run in the browser, preferably through the [Heroku Platform](https://www.heroku.com/) and features dynamic HTML via the use of handlebars, styling with CSS and data stored & retrieved using MySQL and Sequelize.
+A collaboration project proudly brought to you by Team **Awesome-Sauce**, _[SourcE-commerce](https://sourc3-commerce.herokuapp.com)_ is an application that will help business owners track inventory & sales performance as well as provide an e-commerce storefront for customers! This app will run in the browser, [Heroku Platform](https://www.heroku.com/) recommended, and features dynamic HTML via the use of handlebars, styling with CSS and data stored & retrieved using MySQL and Sequelize.
 
-Technologies utilised include...
+Technologies utilized include...
 
 - HTML, CSS, Javascript
 - [Bootstrap CSS](https://getbootstrap.com/)
@@ -20,7 +20,7 @@ Technologies utilised include...
 - [Highcharts](https://www.highcharts.com/)
 - [Heroku Platform](https://www.heroku.com/)
 
-To view a copy of our Presentation, please **[CLICK HERE](https://github.com/MissNG-Git/SourcE-commerce/tree/main/public/assets)**! 
+To view a copy of our Presentation, please **[CLICK HERE](https://github.com/MissNG-Git/SourcE-commerce/tree/main/public)**! 
 _(available in .pdf & .pptx)_
 
 ## ≫ ──── ≪•◦ OBJECTIVES ◦•≫ ──── ≪

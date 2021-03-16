@@ -1,17 +1,16 @@
 <header>
   <h1>Create Account Page</h1>
 </header>
-
 <div class="container">
   <div class="col-auto">
     <form id="create-form">
       <div class="form-group">
         <label for="first-name">First Name</label>
-        <input type="text" class="form-control" id="first-name" placeholder="First Name" />
+        <input name="firstName" type="text" class="form-control" id="first-name" placeholder="First Name" />
       </div>
       <div class="form-group">
         <label for="last-name">Last Name</label>
-        <input type="text" class="form-control" id="last-name" placeholder="Last Name" />
+        <input name="lastName" type="text" class="form-control" id="last-name" placeholder="Last Name" />
       </div>
       <div class="form-group">
         <label for="business-name">Business Name</label>
@@ -24,17 +23,18 @@
 
       <div class="form-group">
         <label for="email-address">Email address</label>
-        <input type="email" class="form-control" id="email-address" aria-describedby="emailHelp"
+        <input name="email" type="email" class="form-control" id="email-address" aria-describedby="emailHelp"
           placeholder="Enter email" />
         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
       </div>
       <div class="form-group">
         <label for="passwordInput">Password</label>
-        <input type="password" class="form-control" id="passwordInput" placeholder="Password" />
+        <input name="password" type="password" class="form-control" id="passwordInput" placeholder="Password" />
       </div>
       <div class="form-group">
         <label for="confirmPasswordInput">Re-Enter Password</label>
-        <input type="password" class="form-control" id="confirmPasswordInput" placeholder="Password" />
+        <input name="confirmPassword" type="password" class="form-control" id="confirmPasswordInput"
+          placeholder="Password" />
       </div>
 
       <br />

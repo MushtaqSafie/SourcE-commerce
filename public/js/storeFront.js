@@ -3,34 +3,33 @@ document.addEventListener("DOMContentLoaded", event => {
     console.info("DOM loaded");
   }
 
-  //call event in brackets.
-  //const id = $(this).data("id");
-  fetch(`/api/storefront/${id}`, {
-    method: "GET",
-
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json"
-    }.then(() => {
-      this.data, console.log("loaded"); /// Success response
-      location.reload();
-    })
-  });
-
-  $(".cartBtn").on("click", () => {
-    //call event in brackets.
-    //const id = $(this).data("id");
-    fetch(`/api/storefront/${id}`, {
+  document.getElementById(".cartBtn").addEventListener("submit", e => {
+    e.preventDefault();
+    fetch("api/storefront", {
       method: "PUT",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
-      }.then(() => {
-        console.log("added to cart"); /// Success response
-        location.reload();
-      })
+      }
+    }).then(data => {
+      console.log(data);
     });
   });
+
+  //   $(".cartBtn").on("click", () => {
+  //     //call event in brackets.
+  //     //const id = $(this).data("id");
+  //     fetch(`/api/storefront/${id}`, {
+  //       method: "PUT",
+  //       headers: {
+  //         Accept: "application/json",
+  //         "Content-Type": "application/json",
+  //       }.then(() => {
+  //         console.log("added to cart"); /// Success response
+  //         location.reload();
+  //       }),
+  //     });
+  //   });
 
   //   $(".cartBtn").on("click", function() {
   //     //call event in brackets.

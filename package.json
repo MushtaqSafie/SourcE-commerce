@@ -4,8 +4,8 @@
   "description": "A collaboration group project...",
   "main": "server.js",
   "scripts": {
-    "test": "standard",
-    "start": "nodemon",
+    "test": "npm run lint",
+    "start": "node server.js",
     "lint": "eslint --quiet .",
     "fix": "eslint --fix .",
     "watch": "nodemon server.js"
@@ -26,16 +26,14 @@
     "express": "^4.17.1",
     "express-handlebars": "^5.2.1",
     "mysql2": "^2.2.5",
-    "passport": "^0.4.1",
     "sequelize": "^6.5.0"
   },
   "devDependencies": {
     "eslint": "^7.21.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.2",
-    "nodemon": "^1.18.4",
-    "prettier": "^1.13.7",
-    "standard": "^12.0.1"
+    "nodemon": "^2.0.7",
+    "prettier": "^1.13.7"
   },
   "keywords": []
 }

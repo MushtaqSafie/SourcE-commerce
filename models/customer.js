@@ -8,14 +8,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    city: {
-      type: DataTypes.STRING
-    },
-    state: {
-      type: DataTypes.STRING
-    },
-    zip_code: {
-      type: DataTypes.INTEGER
+    phone_number: {
+      type: DataTypes.INTEGER(10)
     },
     email: {
       type: DataTypes.STRING,
@@ -25,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    // option [buyer , buyer/seller]
+    // change to client-type & values = "customer", "business-owner"?
     customer_status: {
       type: DataTypes.ENUM,
       values: ["buyer", "buyer/seller"],

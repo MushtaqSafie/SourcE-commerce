@@ -1,5 +1,4 @@
 const express = require("express");
-const db = require("../models");
 
 const router = express.Router();
 
@@ -43,7 +42,7 @@ router.post("/createAccount", (req, res) => {
   // Check if the password and confirm password fields match
   if (password === confirmPassword) {
     //Check if user with the same email is registered
-    if (customers.find(customers => customer.email === email)) {
+    if (customers.find(customer => customer.email === email)) {
       res.render("createAccount", {
         message: "User already created.",
         messageClass: "alert-danger"

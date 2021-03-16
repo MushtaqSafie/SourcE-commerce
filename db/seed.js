@@ -1,6 +1,5 @@
 const fs = require("fs");
 const db = require("../models");
-
 db.Customer.findAll({}).then(result => console.log(result));
 
 const customers = [

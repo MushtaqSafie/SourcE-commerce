@@ -1,4 +1,5 @@
-const db = require("./seed.js")
+const db = require("../db")
+
 
 //const cryptoJS = require("crypto-js");
 

@@ -1,10 +1,7 @@
-<<<<<<< HEAD
-=======
 {
   /* <script>
   document.addEventListener("DOMContentLoaded", () => { */
 }
->>>>>>> 97c261bbeb61566d6c6e6d6230b580fa9657dc94
 // module.exports = (Highcharts, DataTypes) => {
 const salesLineChart = Highcharts.chart("container", {
   chart: {
@@ -35,8 +32,5 @@ const salesLineChart = Highcharts.chart("container", {
 
 return salesLineChart;
 // };
-<<<<<<< HEAD
-=======
 // });
 // </script>
->>>>>>> 97c261bbeb61566d6c6e6d6230b580fa9657dc94

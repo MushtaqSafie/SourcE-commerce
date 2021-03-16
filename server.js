@@ -3,7 +3,7 @@ const exphbs = require("express-handlebars");
 const htmlRouter = require("./routes/html-routes.js");
 const apiRouter = require("./routes/api-routes.js");
 const cookieParser = require("cookie-parser");
-//const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 
 //const crypto = require("./config/crypto");
 
@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 8080;
 const db = require("./models");
 
 // Sets up the Express app to handle data parsing
-//app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Static directory
@@ -28,12 +28,14 @@ app.set("view engine", "handlebars");
 // Invoke routes
 app.use(htmlRouter);
 app.use(apiRouter);
+// authentication code.
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cookieParser());
 
 app.use((req, res, next) => {
   const authToken = req.cookies.AuthToken;
-  req.user = authTokens[authToken];
+  req.customer = authTokens[authToken];
   next();
 });
 

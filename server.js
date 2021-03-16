@@ -5,8 +5,6 @@ const apiRouter = require("./routes/api-routes.js");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 
-//const crypto = require("./config/crypto");
-
 // Sets up the Express App
 const app = express();
 const authTokens = {};

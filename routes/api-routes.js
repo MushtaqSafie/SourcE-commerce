@@ -36,7 +36,9 @@ router.get("/index", (req, res) => {
   res.render("index");
 });
 
-router.post("/index", (req, res) => {
+router.post("/api/login", (req, res) => {
+  console.log(req.body);
+  console.log("--------------------------");
   const { email, password } = req.body;
   const hashedPassword = getHashedPassword(password);
   const customer = customers.find(c => {

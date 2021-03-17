@@ -5,13 +5,19 @@ document.getElementById("login-form").addEventListener("submit", e => {
 
 document.getElementById("login-form").addEventListener("submit", e => {
   e.preventDefault();
-  fetch("api/customers", {
-    method: "GET",
+  fetch("api/login", {
+    method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json"
-    }
+    },
+    body: JSON.stringify({
+      email: "bryanmeow@me.com",
+      password: "password"
+    })
   }).then(data => {
     console.log(data);
   });
 });
+
+

@@ -1,6 +1,5 @@
 const express = require("express");
 const db = require("../models");
-
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -42,28 +41,23 @@ router.get("/salesDash", (req, res) => {
 
 /* Authentication starts below
  */
+const getHashedPassword = require("./config/crytpo.js");
+const generateAuthToken = require("./config/crytpo.js");
 const authTokens = {};
 
 const customers = [
   //This user added to array to avoid creating a new user on each restart
   {
-      firstName: 'Bryan',
-      lastName: 'Cats',
-      email: 'bryanmeow@me.com',
-      password: 'Zedo!fdnklfnvkjfnv'
+    firstName: "Bryan",
+    lastName: "Cats",
+    email: "bryanmeow@me.com",
+    password: "Zedo!fdnklfnvkjfnv"
   }
 ];
 
-app.engine('hbs', exphbs({
-  extname: '.hbs'
-}));
-
-app.set('view engine', 'hbs');
-
-app.get('/', (req, res) => {
-  res.render('home');
+router.get("/", (req, res) => {
+  res.render("home");
 });
-
 
 router.get("/index", (req, res) => {
   res.render("index");

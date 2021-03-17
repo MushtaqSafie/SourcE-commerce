@@ -36,11 +36,11 @@ document.addEventListener("DOMContentLoaded", event => {
       }).then(() => {
         // Empty the form
 
-        (document.getElementById("product-name").value = ""),
-        (document.getElementById("inventory-description").value = ""),
-        (document.getElementById("inventory-quantity").value = ""),
-        (document.getElementById("inventory-price").value = ""),
-        (document.getElementById("add-photo").value = ""),
+        document.getElementById("product-name").value = "";
+        document.getElementById("inventory-description").value = "";
+        document.getElementById("inventory-quantity").value = "";
+        document.getElementById("inventory-price").value = "";
+        document.getElementById("add-photo").value = "";
         // Reload the page so the user can see the new quote
         console.log("Created a new Product");
         location.reload();

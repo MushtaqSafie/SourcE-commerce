@@ -1,6 +1,6 @@
-<div class="row">
-    <div class="col-auto">
-        <form>
+<div class="row submit">
+    <div class="col-md-12">
+        <form id="create-form">
             <div class="form-group">
                 <label for="product-name">Product Name</label>
                 <input type="text" class="form-control" id="product-name" placeholder="Product Name" />
@@ -18,11 +18,11 @@
                 <input type="text" class="form-control" id="inventory-quantity" placeholder="Quantity" />
             </div>
 
-            <button type="submit" class="btn btn-info">Add photo</button>
+            <button type="submit" class="btn btn-info add-photo">Add photo</button>
 
             <br />
             <br />
-            <button type="Add photo" class="btn btn-primary">Submit</button>
+            <button type="submit-form" class="btn subFormClick btn-primary">Submit</button>
         </form>
     </div>
 </div>
@@ -74,7 +74,8 @@
                 <p class="card-text">{{dataValues.selling_price}}
                 </p>
                 <p class="card-text">Only {{dataValues.inventory}} left!</p>
-                <a href="#" class="btn btn-primary">Add to Cart</a>
+                <button class="btn newProductBtn btn-primary" data-id="{{id}}" data-newproduct="{{products}}">Add to
+                    Cart</button>
             </div>
         </div>
         {{/each}}

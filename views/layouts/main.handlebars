@@ -42,7 +42,11 @@
         {{#each client-type}}
         {{#if customer}}
         <li>
-          <a href="Storefront">Storefront</a>
+          <h2>Cart</h2>
+
+          {{cart-items}}
+
+          <button class="checkoutBtn">Checkout</button>
         </li>
         {{/if}}
         {{/each}}

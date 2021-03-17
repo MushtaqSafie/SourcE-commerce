@@ -10,7 +10,7 @@ const customers = [
     zip_code: 2000,
     email: "mushtaq@example.com",
     user_password: "myPassword",
-    customer_status: "buyer/seller"
+    client_type: "business-owner"
   },
   {
     first_name: "Fatima",
@@ -20,7 +20,7 @@ const customers = [
     zip_code: 2000,
     email: "fatima@example.com",
     user_password: "myPassword",
-    customer_status: "buyer/seller"
+    client_type: "business-owner"
   },
   {
     first_name: "Fraser",
@@ -30,7 +30,7 @@ const customers = [
     zip_code: 2000,
     email: "Fraser@example.com",
     user_password: "myPassword",
-    customer_status: "buyer/seller"
+    client_type: "business-owner"
   },
   {
     first_name: "Jessie",
@@ -40,7 +40,7 @@ const customers = [
     zip_code: 2000,
     email: "Jessie@example.com",
     user_password: "myPassword",
-    customer_status: "buyer/seller"
+    client_type: "business-owner"
   }
 ];
 

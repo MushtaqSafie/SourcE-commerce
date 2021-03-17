@@ -17,7 +17,7 @@ router.get("/createAccount", (req, res) => {
 router.get("/storeFront", (req, res) => {
   db.Products.findAll().then(data => {
     const obj = data;
-    console.log(obj);
+    // console.log(obj);
     res.render("storeFront", { products: obj });
   });
 });
@@ -25,7 +25,7 @@ router.get("/storeFront", (req, res) => {
 router.get("/inventory", (req, res) => {
   db.Products.findAll().then(data => {
     const obj = data;
-    console.log(obj);
+    // console.log(obj);
     res.render("inventory", { products: obj });
   });
 });
@@ -35,7 +35,7 @@ router.get("/salesDash", (req, res) => {
     include: [db.Products, db.Customer]
   }).then(data => {
     const obj = data;
-    console.log(obj);
+    // console.log(obj);
     res.render("salesDash", { orders: obj });
   });
 });

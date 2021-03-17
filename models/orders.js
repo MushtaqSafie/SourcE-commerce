@@ -7,7 +7,8 @@ module.exports = (sequelize, DataTypes) => {
     order_status: {
       type: DataTypes.ENUM,
       values: ["cart-item", "confirmed-order"],
-      allowNull: false
+      allowNull: false,
+      defaultValue: "cart-item"
     }
   });
 

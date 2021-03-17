@@ -31,6 +31,28 @@ router.get("/api/orders", (req, res) => {
 
 /* Authentication starts below
  */
+const authTokens = {};
+
+const customers = [
+  //This user added to array to avoid creating a new user on each restart
+  {
+      firstName: 'Bryan',
+      lastName: 'Cats',
+      email: 'bryanmeow@me.com',
+      password: 'Zedo!fdnklfnvkjfnv'
+  }
+];
+
+app.engine('hbs', exphbs({
+  extname: '.hbs'
+}));
+
+app.set('view engine', 'hbs');
+
+app.get('/', (req, res) => {
+  res.render('home');
+});
+
 
 router.get("/index", (req, res) => {
   res.render("index");
@@ -54,7 +76,7 @@ router.post("/api/login", (req, res) => {
     res.redirect("/salesDash");
     return;
   }
-  res.render("/index", {
+  res.render("/login", {
     messageClass: "Invalid username or password",
     messageClass: "alert-danger"
   });
@@ -88,7 +110,7 @@ router.post("/createAccount", (req, res) => {
       password: hashedPassword
     });
 
-    res.render("index", {
+    res.render("login", {
       message: "Registration Complete. Continue to login please.",
       messageClass: "alert-success"
     });
@@ -102,10 +124,10 @@ router.post("/createAccount", (req, res) => {
 
 router.get("/salesDash", (req, res) => {
   if (req.customer) {
-    //res.render('/protected');
+    res.render("/salesDash");
     console.log("reached");
   } else {
-    res.render("/index", {
+    res.render("/login", {
       message: "Please login to continue",
       messageClass: "alert-danger"
     });

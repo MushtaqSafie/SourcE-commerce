@@ -1,6 +1,7 @@
 <div class="row">
     <div class="col-auto products">
         {{#each products}}
+        {{#unless addToCart}}
         <div class="col-auto card" style="width: 18rem;">
             <img class="card-img-top" src="{{dataValues.product_url}}" alt="Card image cap" />
             <div class="card-body">
@@ -11,9 +12,11 @@
                 <p class="card-text">{{dataValues.selling_price}}
                 </p>
                 <p class="card-text">Only {{dataValues.inventory}} left!</p>
-                <a href="#" class="btn btn-primary">Add to Cart</a>
+                <button class="btn cartBtnH btn-primary" data-id="{{id}}" data-newcartitem="{{cartAdd}}">Add to
+                    Cart</button>
             </div>
         </div>
+        {{/unless}}
         {{/each}}
     </div>
 </div>

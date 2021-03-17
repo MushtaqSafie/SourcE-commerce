@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", event => {
       reader.readAsBinaryString(img);
       console.log(img);
 
-
       const d = new Date();
       const yyyy = d.getFullYear();
       const mm = d.getMonth();
@@ -40,8 +39,7 @@ document.addEventListener("DOMContentLoaded", event => {
         inventory: document.getElementById("inventory-quantity").value.trim(),
         selling_price: document.getElementById("inventory-price").value.trim(),
         product_url: imgURLname,
-        product_image: img,
-
+        product_image: img
       };
 
       // Send POST request to create a new quote

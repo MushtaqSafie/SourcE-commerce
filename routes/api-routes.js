@@ -1,5 +1,5 @@
 const express = require("express");
-const fs = require('fs');
+const fs = require("fs");
 const db = require("../models");
 
 const router = express.Router();
@@ -36,11 +36,11 @@ router.post("/api/inventory", (req, res) => {
       where: {
         id: result.id
       }
-    }).then((res) => {
-      const buffer = Buffer.from(res.product_image, "base64")
+    }).then(res => {
+      const buffer = Buffer.from(res.product_image, "base64");
       fs.writeFileSync(`./public${res.product_url}`, buffer);
     });
-    res.json({ id: result.insertId })
+    res.json({ id: result.insertId });
   });
 });
 
@@ -53,11 +53,11 @@ router.post("/api/orders", (req, res) => {
   db.Orders.create(req.body).then(result => res.json({ id: result.insertId }));
 });
 
-router.put('/api/burger/:id', (req, res) => {
+router.put("/api/burger/:id", (req, res) => {
   db.Order.update(req.body, {
     where: {
-      id: req.body.id,
-    },
+      id: req.body.id
+    }
   }).then(result => res.json(result));
   //   if (result.changedRows === 0) {
   //     return res.status(404).end();

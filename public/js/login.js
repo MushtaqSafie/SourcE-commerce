@@ -5,7 +5,7 @@ document.getElementById("login-form").addEventListener("submit", e => {
 
 document.getElementById("login-form").addEventListener("submit", e => {
   e.preventDefault();
-  fetch("api/login", {
+  fetch("api/customers", {
     method: "POST",
     headers: {
       Accept: "application/json",

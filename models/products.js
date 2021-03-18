@@ -8,16 +8,13 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT
     },
     inventory: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+      type: DataTypes.INTEGER
     },
     purchase_price: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false
+      type: DataTypes.DECIMAL(10, 2)
     },
     selling_price: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false
+      type: DataTypes.DECIMAL(10, 2)
     },
     product_image: {
       type: DataTypes.BLOB("long")

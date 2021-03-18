@@ -20,10 +20,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     // change to client-type & values = "customer", "business-owner"?
-    customer_status: {
+    client_type: {
       type: DataTypes.ENUM,
-      values: ["buyer", "buyer/seller"],
-      allowNull: false
+      values: ["customer", "business-owner"],
+      allowNull: false,
+      defaultValue: "customer"
     }
   });
 

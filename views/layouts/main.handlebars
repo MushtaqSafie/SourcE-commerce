@@ -31,10 +31,10 @@
         {{#each client-type}}
         {{#if business-owner}}
         <li class="active">
-          <a href="dashboard.html">Sales</a>
+          <a href="/salesDash">Sales</a>
         </li>
         <li>
-          <a href="inventory.html">Inventory</a>
+          <a href="/inventory">Inventory</a>
         </li>
         {{/if}}
         {{/each}}
@@ -42,11 +42,32 @@
         {{#each client-type}}
         {{#if customer}}
         <li>
-          <a href="Storefront">Storefront</a>
+          <h2>Cart</h2>
+
+          {{cart-items}}
+
+          <button class="checkoutBtn">Checkout</button>
         </li>
         {{/if}}
         {{/each}}
       </ul>
+
+      {{!-- TEMP NAV LINKS --}}
+      <li class="active">
+        <a href="/">Login</a>
+      </li>
+      <li>
+        <a href="/createAccount">Create Account</a>
+      </li>
+      <li>
+        <a href="/salesDash">Sales Dashboard</a>
+      </li>
+      <li>
+        <a href="/inventory">Inventory</a>
+      </li>
+      <li>
+        <a href="/storeFront">Storefront</a>
+      </li>
     </nav>
 
     <div id="content">

@@ -16,7 +16,7 @@ router.get("/createAccount", (req, res) => {
 router.get("/storeFront", (req, res) => {
   db.Products.findAll().then(data => {
     const obj = data;
-    console.log(obj);
+    // console.log(obj);
     res.render("storeFront", { products: obj });
   });
 });
@@ -24,7 +24,7 @@ router.get("/storeFront", (req, res) => {
 router.get("/inventory", (req, res) => {
   db.Products.findAll().then(data => {
     const obj = data;
-    console.log(obj);
+    // console.log(obj);
     res.render("inventory", { products: obj });
   });
 });
@@ -34,15 +34,18 @@ router.get("/salesDash", (req, res) => {
     include: [db.Products, db.Customer]
   }).then(data => {
     const obj = data;
-    console.log(obj);
+    // console.log(obj);
     res.render("salesDash", { orders: obj });
   });
 });
 
 /* Authentication starts below
  */
-const getHashedPassword = require("./config/crytpo.js");
-const generateAuthToken = require("./config/crytpo.js");
+const crypt = require("../config/crypto");
+const hashPass = crypt.getHashedPassword("cr");
+console.log(`hashed password: ${hashPass}`);
+const authTok = crypt.generateAuthToken();
+console.log(`AuthToken: ${authTok}`);
 const authTokens = {};
 
 const customers = [
@@ -51,7 +54,7 @@ const customers = [
     firstName: "Bryan",
     lastName: "Cats",
     email: "bryanmeow@me.com",
-    password: "Zedo!fdnklfnvkjfnv"
+    password: "password"
   }
 ];
 
@@ -67,13 +70,13 @@ router.post("/api/login", (req, res) => {
   console.log(req.body);
   console.log("--------------------------");
   const { email, password } = req.body;
-  const hashedPassword = getHashedPassword(password);
+  const hashedPassword = crypt.getHashedPassword(password);
   const customer = customers.find(c => {
     return c.email === email && hashedPassword === c.password;
   });
 
   if (customer) {
-    const authToken = generateAuthToken();
+    const authToken = crypt.generateAuthToken();
 
     authTokens[authToken] = email;
 
@@ -105,7 +108,7 @@ router.post("/createAccount", (req, res) => {
 
       return;
     }
-    const hashedPassword = getHashedPassword(password);
+    const hashedPassword = crypt.getHashedPassword(password);
 
     //Store user into database
     customers.push({

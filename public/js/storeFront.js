@@ -17,14 +17,14 @@ document.addEventListener("DOMContentLoaded", event => {
           addToCart: newCart,
           addToCart: true
         };
-        // devoured true. So anything that has new devour, change to current devour.
+        // addtocart true. So anything that has new , change to current.
         fetch(`/api/storefront/${id}`, {
           method: "PUT",
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json"
           },
-
+          //FOR SIDEBAR = cart-items
           // make sure to serialize the JSON body
           body: JSON.stringify(newCartState)
         }).then(response => {

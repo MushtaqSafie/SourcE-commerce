@@ -16,6 +16,7 @@
 
 <body>
   <div class="wrapper">
+    {{#if sidebar}}
     <nav id="sidebar">
       <div class="sidebar-header">
         <h3>SourcE-commerce</h3>
@@ -78,6 +79,20 @@
         </div>
       </nav>
     </div>
+
+    {{#else}}
+    <div id="content">
+      <header>
+        <h1>{{heading}}</h1>
+      </header>
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          {{{ body }}}
+        </div>
+      </nav>
+    </div>
+    {{/if}}
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

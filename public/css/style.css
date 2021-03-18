@@ -19,10 +19,25 @@ p {
   align-items: stretch;
 } */
 
-main#content {
+#indexContent {
+  display: block;
+  text-align: center;
+}
+
+#login-form,
+#create-form {
+  display: inline-block;
+  text-align: left;
+}
+
+#appContent {
   margin-left: 250px;
   padding: 1px 16px;
   height: 1000px;
+}
+
+.appHeading {
+  margin-left: 20px;
 }
 
 #sidebar {

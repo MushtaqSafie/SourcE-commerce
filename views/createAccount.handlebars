@@ -1,7 +1,7 @@
 <div class="container">
   <div class="col-auto">
     <form id="create-form">
-      <div class="form-group">
+      <div class="create-form">
         <label for="first-name">First Name</label>
         <input name="firstName" type="text" class="form-control" id="first-name" placeholder="First Name" />
 
@@ -19,15 +19,14 @@
         <label for="confirmPasswordInput">Re-Enter Password</label>
         <input name="confirmPassword" type="password" class="form-control" id="confirmPasswordInput"
           placeholder="Password" />
-      </div>
 
-      <div class="form-group">
         <label>
-          <input name="businessSelect" type="checkbox" class="form-check-label" id="businessSelect">Are you a Business
-          Owner?
+          <input name="businessSelect" type="checkbox" class="form-check-label" id="businessSelect"
+            data-toggle="collapse" href="#business-toggle" role="checkbox" aria-expanded="false"
+            aria-controls="business-toggle"> Are you a Business Owner?
         </label>
-        <br>
-        <div class="business-toggle">
+
+        <div class="collapse" id="business-toggle">
           <label for="business-name">Business Name</label>
           <input type="text" class="form-control" id="business-name" placeholder="Business Name" />
 
@@ -36,8 +35,8 @@
         </div>
       </div>
 
-      <br />
-      <br />
+      <br>
+
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </div>

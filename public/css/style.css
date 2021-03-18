@@ -71,7 +71,8 @@ a[aria-expanded="true"] {
 }
 
 #email-address1,
-#passwordInput1 {
+#passwordInput1,
+div label {
   margin-top: 20px;
 }
 

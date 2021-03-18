@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", event => {
   if (event) {
-    console.info("DOM loaded");
+    console.info("Inventory DOM loaded");
   }
 
   const fileInput = document.getElementById("input-files");

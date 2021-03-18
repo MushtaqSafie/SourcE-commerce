@@ -3,23 +3,34 @@ document.addEventListener("DOMContentLoaded", event => {
     console.info("DOM loaded");
   }
 
+  const fileInput = document.getElementById("input-files");
+  let base64String;
+
+  // listen for the change event so we can capture the file
+  fileInput.addEventListener("change", (e) => {
+    // get a reference to the file
+    const file = e.target.files[0];
+
+    // checking for valid image format
+    if (file.name.split(".")[1] != "JPG" && file.name.split(".")[1] != "PNG") {
+      alert("upload a vaild image with .jpg or .png format");
+      document.getElementById("input-files").value = "";
+    }
+    // encode the file using the FileReader API
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      // remove data url part
+      base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
+    };
+    reader.readAsDataURL(file);
+  });
+
   // CREATE
   const createSubmitBtn = document.getElementById("create-form");
 
   if (createSubmitBtn) {
     createSubmitBtn.addEventListener("submit", e => {
       e.preventDefault();
-
-      const img = document.getElementById("input-files").files[0];
-
-      // // encode the file using the FileReader API
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        // use a regex to remove data url part
-        reader.result;
-      };
-      reader.readAsBinaryString(img);
-      console.log(img);
 
       const d = new Date();
       const yyyy = d.getFullYear();
@@ -39,7 +50,7 @@ document.addEventListener("DOMContentLoaded", event => {
         inventory: document.getElementById("inventory-quantity").value.trim(),
         selling_price: document.getElementById("inventory-price").value.trim(),
         product_url: imgURLname,
-        product_image: img
+        product_image: base64String
       };
 
       // Send POST request to create a new quote

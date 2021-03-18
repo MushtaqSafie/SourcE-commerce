@@ -43,7 +43,6 @@ router.get("/index", (req, res) => {
   res.render("index");
 });
 
-
 /* Authentication starts below
 router.get("/", (req, res) => {
   res.render("home");
@@ -54,7 +53,6 @@ router.get("/createAccount", (req, res) => {
   res.render("createAccount");
 });
  */
-
 
 // router.get("/salesDash", (req, res) => {
 //   if (req.customer) {

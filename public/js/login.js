@@ -13,11 +13,11 @@ document.getElementById("login-form").addEventListener("submit", e => {
   })
     .then(res => res.json())
     .then(data => {
+      // eslint-disable-next-line eqeqeq
       if (data.isValid == "true") {
         window.location.href = "/salesDash";
       } else {
-        // the is login user is not valid display a message in <div id='notValid-message'> 
-
+        // the is login user is not valid display a message in <div id='notValid-message'>
       }
     });
 });

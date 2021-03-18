@@ -72,8 +72,6 @@ router.put("/api/orders/:id", (req, res) => {
   // });
 });
 
-
-
 // Authentication starts below
 
 const crypt = require("../config/crypto");
@@ -86,7 +84,7 @@ router.post("/api/index", (req, res) => {
     attributes: ["email", "user_password"]
   }).then(data => {
     data.forEach(item => {
-      customers.push(item.dataValues)
+      customers.push(item.dataValues);
     });
 
     const { email, password } = req.body;
@@ -103,12 +101,12 @@ router.post("/api/index", (req, res) => {
       res.cookie("AuthToken", authToken);
 
       res.json({ isValid: "true" });
-      console.log('true');
+      console.log("true");
       // res.redirect("/salesDash");
       return;
     }
     res.json({ isValid: "false" });
-    console.log('false');
+    console.log("false");
   });
 });
 
@@ -149,6 +147,5 @@ router.post("/api/index", (req, res) => {
 //     });
 //   }
 // });
-
 
 module.exports = router;

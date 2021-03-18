@@ -40,24 +40,6 @@ router.get("/salesDash", (req, res) => {
 });
 
 /* Authentication starts below
- */
-const crypt = require("../config/crypto");
-const hashPass = crypt.getHashedPassword("cr");
-console.log(`hashed password: ${hashPass}`);
-const authTok = crypt.generateAuthToken();
-console.log(`AuthToken: ${authTok}`);
-const authTokens = {};
-
-const customers = [
-  //This user added to array to avoid creating a new user on each restart
-  {
-    firstName: "Bryan",
-    lastName: "Cats",
-    email: "bryanmeow@me.com",
-    password: "password"
-  }
-];
-
 router.get("/", (req, res) => {
   res.render("home");
 });
@@ -66,35 +48,12 @@ router.get("/index", (req, res) => {
   res.render("index");
 });
 
-router.post("/api/login", (req, res) => {
-  console.log(req.body);
-  console.log("--------------------------");
-  const { email, password } = req.body;
-  const hashedPassword = crypt.getHashedPassword(password);
-  const customer = customers.find(c => {
-    return c.email === email && hashedPassword === c.password;
-  });
-
-  if (customer) {
-    const authToken = crypt.generateAuthToken();
-
-    authTokens[authToken] = email;
-
-    res.cookie("AuthToken", authToken);
-    res.redirect("/salesDash");
-    return;
-  }
-  res.render("/login", {
-    messageClass: "Invalid username or password",
-    messageClass: "alert-danger"
-  });
-});
-
 router.get("/createAccount", (req, res) => {
   res.render("createAccount");
 });
+ */
 
-router.post("/createAccount", (req, res) => {
+/*router.post("/createAccount", (req, res) => {
   const { email, firstName, lastName, password, confirmPassword } = req.body;
 
   // Check if the password and confirm password fields match
@@ -141,5 +100,6 @@ router.get("/salesDash", (req, res) => {
     });
   }
 });
+*/
 
 module.exports = router;

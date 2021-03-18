@@ -1,11 +1,6 @@
 document.getElementById("login-form").addEventListener("submit", e => {
-  alert("you clicked me");
   e.preventDefault();
-});
-
-document.getElementById("login-form").addEventListener("submit", e => {
-  e.preventDefault();
-  fetch("api/customers", {
+  fetch("/api/index", {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -18,4 +13,7 @@ document.getElementById("login-form").addEventListener("submit", e => {
   }).then(data => {
     console.log(data);
   });
+ /* if (email === true && password === true) {
+    res send 
+  }*/
 });

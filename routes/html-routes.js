@@ -55,53 +55,17 @@ router.get("/createAccount", (req, res) => {
 });
  */
 
-/*router.post("/createAccount", (req, res) => {
-  const { email, firstName, lastName, password, confirmPassword } = req.body;
 
-  // Check if the password and confirm password fields match
-  if (password === confirmPassword) {
-    //Check if user with the same email is registered
-    if (customers.find(customer => customer.email === email)) {
-      res.render("createAccount", {
-        message: "User already created.",
-        messageClass: "alert-danger"
-      });
-
-      return;
-    }
-    const hashedPassword = crypt.getHashedPassword(password);
-
-    //Store user into database
-    customers.push({
-      firstName,
-      lastName,
-      email,
-      password: hashedPassword
-    });
-
-    res.render("login", {
-      message: "Registration Complete. Continue to login please.",
-      messageClass: "alert-success"
-    });
-  } else {
-    res.render("createAccount", {
-      message: "Password is not a match",
-      messageClass: "alert-danger"
-    });
-  }
-});
-
-router.get("/salesDash", (req, res) => {
-  if (req.customer) {
-    res.render("/salesDash");
-    console.log("reached");
-  } else {
-    res.render("/login", {
-      message: "Please login to continue",
-      messageClass: "alert-danger"
-    });
-  }
-});
-*/
+// router.get("/salesDash", (req, res) => {
+//   if (req.customer) {
+//     res.render("/salesDash");
+//     console.log("reached");
+//   } else {
+//     res.render("/login", {
+//       message: "Please login to continue",
+//       messageClass: "alert-danger"
+//     });
+//   }
+// });
 
 module.exports = router;

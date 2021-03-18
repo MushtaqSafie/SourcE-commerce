@@ -49,17 +49,17 @@ router.post("/api/inventory", (req, res) => {
   });
 });
 
-router.post("/api/customers", (req, res) => {
-  // eslint-disable-next-line prettier/prettier
-  db.Customer.create(req.body).then(result => res.json({ id: result.insertId })
-  );
-});
+// router.post("/api/customers", (req, res) => {
+//   // eslint-disable-next-line prettier/prettier
+//   db.Customer.create(req.body).then(result => res.json({ id: result.insertId })
+//   );
+// });
 
 router.post("/api/orders", (req, res) => {
   db.Orders.create(req.body).then(result => res.json({ id: result.insertId }));
 });
 
-router.put("/api/burger/:id", (req, res) => {
+router.put("/api/orders/:id", (req, res) => {
   db.Order.update(req.body, {
     where: {
       id: req.body.id
@@ -72,47 +72,83 @@ router.put("/api/burger/:id", (req, res) => {
   // });
 });
 
-/* Authentication starts below
- */
-const customers = [
-  //This user added to array to avoid creating a new user on each restart
-  {
-    firstName: "Bryan",
-    lastName: "Cats",
-    email: "bryanmeow@me.com",
-    password: "XohImNooBHFR0OVvjcYpJ3NgPQ1qq73WKhHvch0VQtg="
-  }
-];
-/*router.get("api/login", (req, res) => {
-  res.json(json.stringify(req));
-});
-*/
+
+
+// Authentication starts below
+
 const crypt = require("../config/crypto");
 const authTokens = {};
 
 router.post("/api/index", (req, res) => {
-  const { email, password } = req.body;
-  const hashedPassword = crypt.getHashedPassword(password);
-  const customer = customers.find(c => {
-    return c.email === email && hashedPassword === c.password;
+  const customers = [];
+
+  db.Customer.findAll({
+    attributes: ["email", "user_password"]
+  }).then(data => {
+    data.forEach(item => {
+      customers.push(item.dataValues)
+    });
+
+    const { email, password } = req.body;
+    const hashedPassword = crypt.getHashedPassword(password);
+    const customer = customers.find(c => {
+      return c.email === email && hashedPassword === c.user_password;
+    });
+
+    if (customer) {
+      const authToken = crypt.generateAuthToken();
+
+      authTokens[authToken] = email;
+      console.log(authTokens);
+      res.cookie("AuthToken", authToken);
+
+      res.json({ isValid: "true" });
+      console.log('true');
+      // res.redirect("/salesDash");
+      return;
+    }
+    res.json({ isValid: "false" });
+    console.log('false');
   });
-
-  if (customer) {
-    console.log("its true");
-    const authToken = crypt.generateAuthToken();
-
-    authTokens[authToken] = email;
-    res.cookie("AuthToken", authToken);
-
-    res.json({ idValid: "true" })
-    // res.redirect("/salesDash");
-    return;
-  }
-  res.render("salesDash", {
-    messageClass: "Invalid username or password",
-    messageClass: "alert-danger"
-  });
-  console.log('this is not true');
 });
+
+// router.post("/api/createAccount", (req, res) => {
+//   const { email, firstName, lastName, password, confirmPassword } = req.body;
+
+//   // Check if the password and confirm password fields match
+//   if (password === confirmPassword) {
+//     //Check if user with the same email is registered
+//     if (customers.find(customer => customer.email === email)) {
+//       res.render("createAccount", {
+//         message: "User already created.",
+//         messageClass: "alert-danger"
+//       });
+
+//       return;
+//     }
+//     const hashedPassword = crypt.getHashedPassword(password);
+
+//     //Store user into database
+//     customers.push({
+//       firstName,
+//       lastName,
+//       email,
+//       password: hashedPassword
+//     });
+
+//     // also create authToken and cookies authToken
+
+//     res.render("login", {
+//       message: "Registration Complete. Continue to login please.",
+//       messageClass: "alert-success"
+//     });
+//   } else {
+//     res.render("createAccount", {
+//       message: "Password is not a match",
+//       messageClass: "alert-danger"
+//     });
+//   }
+// });
+
 
 module.exports = router;

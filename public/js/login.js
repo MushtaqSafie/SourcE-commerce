@@ -7,15 +7,17 @@ document.getElementById("login-form").addEventListener("submit", e => {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      email: "bryanmeow@me.com",
-      password: "password"
+      email: document.getElementById("email-address").value.trim(),
+      password: document.getElementById("passwordInput").value.trim()
     })
   })
     .then(res => res.json())
     .then(data => {
-      console.log(data);
+      if (data.isValid == "true") {
+        window.location.href = "/salesDash";
+      } else {
+        // the is login user is not valid display a message in <div id='notValid-message'> 
+
+      }
     });
-  /* if (email === true && password === true) {
-     res send 
-   }*/
 });

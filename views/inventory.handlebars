@@ -4,39 +4,51 @@
             <div class="form-group">
                 <label for="product-name">Product Name</label>
                 <input type="text" class="form-control" id="product-name" placeholder="Product Name" />
-            </div>
-            <div class="form-group">
+
                 <label for="inventory-description">Description</label>
                 <input type="text" class="form-control" id="inventory-description" placeholder="Description" />
-            </div>
-            <div class="form-group">
+
                 <label for="inventory-price">Price</label>
                 <input type="text" class="form-control" id="inventory-price" placeholder="Price" />
-            </div>
-            <div class="form-group">
+
                 <label for="inventory-quantity">Quantity</label>
                 <input type="text" class="form-control" id="inventory-quantity" placeholder="Quantity" />
-            </div>
 
-            <div class="form-group">
                 <input type="file" name="file" id="input-files" class="btn btn-info add-photo"
                     accept=".jpg, .png, .jpeg|image/*" />
+                <br>
+                <button type="submit-form" class="btn subFormClick btn-primary">Submit</button>
             </div>
-
             {{!-- <button type="submit" class="btn btn-info add-photo">Add photo</button> --}}
-
-            <br />
-            <br />
-            <button type="submit-form" class="btn subFormClick btn-primary">Submit</button>
         </form>
     </div>
 </div>
 
+<div class="row product">
+    {{!-- <div class="col-auto products"> --}}
+        {{#each products}}
+        <div class="col-auto card" id="item-card" style="width: 18rem;">
+            <img class="card-img-top" src="{{dataValues.product_url}}" alt="Card image cap" />
+            <div class="card-body">
+                <h5 class="card-title">{{dataValues.product_name}}</h5>
+                <p class="card-text">
+                    {{dataValues.product_description}}
+                </p>
+                <p class="card-text">{{dataValues.selling_price}}
+                </p>
+                <p class="card-text">Only {{dataValues.inventory}} left!</p>
+                <button class="btn newProductBtn btn-primary" data-id="{{id}}" data-newproduct="{{products}}">Add to
+                    Cart</button>
+            </div>
+        </div>
+        {{/each}}
+        {{!--
+    </div> --}}
+</div>
 
+<script src="js/inventory.js"></script>
 
-
-
-
+{{!--
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -64,29 +76,4 @@
     </a>
 </div>
 <br />
-<br />
-
-<div class="row">
-    <div class="col-auto products">
-        {{#each products}}
-        <div class="col-auto card" style="width: 18rem;">
-            <img class="card-img-top" src="{{dataValues.product_url}}" alt="Card image cap" />
-            <div class="card-body">
-                <h5 class="card-title">{{dataValues.product_name}}</h5>
-                <p class="card-text">
-                    {{dataValues.product_description}}
-                </p>
-                <p class="card-text">{{dataValues.selling_price}}
-                </p>
-                <p class="card-text">Only {{dataValues.inventory}} left!</p>
-                <button class="btn newProductBtn btn-primary" data-id="{{id}}" data-newproduct="{{products}}">Add to
-                    Cart</button>
-            </div>
-        </div>
-        {{/each}}
-
-
-    </div>
-</div>
-
-<script src="js/inventory.js"></script>
+<br /> --}}

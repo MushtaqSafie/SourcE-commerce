@@ -1,5 +1,5 @@
-<div class="container">
-  <div class="col-auto">
+<div class="indexRow">
+  {{!-- <div class="col-auto"> --}}
     <form id="create-form">
       <div class="create-form">
         <label for="first-name">First Name</label>
@@ -33,15 +33,13 @@
           <label for="phone-number">Phone Number</label>
           <input type="text" class="form-control" id="phone-number" placeholder="Phone Number" />
         </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a type="button" class="btn btn-outline-dark" id="createAcctBtn" href="/">Back to Login
+          <i class="fas fa-sign-in-alt"></i></a>
       </div>
-
-      <br>
-
-      <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </div>
-  <br />
-  <br />
 </div>
 
 <script src="js/create.js"></script>

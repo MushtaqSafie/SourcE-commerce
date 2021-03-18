@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", event => {
     const file = e.target.files[0];
 
     // checking for valid image format
+    // eslint-disable-next-line eqeqeq
     if (file.name.split(".")[1] != "JPG" && file.name.split(".")[1] != "PNG") {
       alert("upload a vaild image with .jpg or .png format");
       document.getElementById("input-files").value = "";

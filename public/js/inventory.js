@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", event => {
   let base64String;
 
   // listen for the change event so we can capture the file
-  fileInput.addEventListener("change", (e) => {
+  fileInput.addEventListener("change", e => {
     // get a reference to the file
     const file = e.target.files[0];
 

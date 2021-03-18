@@ -7,8 +7,8 @@ document.getElementById("login-form").addEventListener("submit", e => {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      email: document.getElementById("email-address").value.trim(),
-      password: document.getElementById("passwordInput").value.trim()
+      email: document.getElementById("email-address1").value.trim(),
+      password: document.getElementById("passwordInput1").value.trim()
     })
   })
     .then(res => res.json())

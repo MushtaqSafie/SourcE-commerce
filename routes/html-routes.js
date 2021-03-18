@@ -7,14 +7,16 @@ router.get("/", (req, res) => {
     const obj = data;
     res.render("index", {
       customer: obj,
-      heading: "Login Page"
+      heading: "Login Page",
+      sidebar: false
     });
   });
 });
 
 router.get("/createAccount", (req, res) => {
   res.render("createAccount", {
-    heading: "Create Account"
+    heading: "Create Account",
+    sidebar: false
   });
 });
 
@@ -24,7 +26,8 @@ router.get("/storeFront", (req, res) => {
     // console.log(obj);
     res.render("storeFront", {
       products: obj,
-      heading: "Storefront"
+      heading: "Storefront",
+      sidebar: true
     });
   });
 });
@@ -35,7 +38,8 @@ router.get("/inventory", (req, res) => {
     // console.log(obj);
     res.render("inventory", {
       products: obj,
-      heading: "Inventory"
+      heading: "Inventory",
+      sidebar: true
     });
   });
 });
@@ -48,7 +52,8 @@ router.get("/salesDash", (req, res) => {
     // console.log(obj);
     res.render("salesDash", {
       orders: obj,
-      heading: "Sales Dashboard"
+      heading: "Sales Dashboard",
+      sidebar: true
     });
   });
 });

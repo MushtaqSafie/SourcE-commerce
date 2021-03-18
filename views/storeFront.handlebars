@@ -1,8 +1,8 @@
-<div class="row">
-    <div class="col-auto products">
+<div class="row product">
+    {{!-- <div class="col-auto products"> --}}
         {{#each products}}
         {{#unless addToCart}}
-        <div class="col-auto card" style="width: 18rem;">
+        <div class="col-auto card" id="item-card" style="width: 18rem;">
             <img class="card-img-top" src="{{dataValues.product_url}}" alt="Card image cap" />
             <div class="card-body">
                 <h5 class="card-title">{{dataValues.product_name}}</h5>
@@ -18,7 +18,8 @@
         </div>
         {{/unless}}
         {{/each}}
-    </div>
+        {{!--
+    </div> --}}
 </div>
 
 <script src="js/storeFront.js"></script>

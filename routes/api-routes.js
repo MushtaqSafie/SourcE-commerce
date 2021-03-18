@@ -80,7 +80,7 @@ const customers = [
     firstName: "Bryan",
     lastName: "Cats",
     email: "bryanmeow@me.com",
-    password: "password"
+    password: "XohImNooBHFR0OVvjcYpJ3NgPQ1qq73WKhHvch0VQtg="
   }
 ];
 /*router.get("api/login", (req, res) => {
@@ -102,8 +102,10 @@ router.post("/api/index", (req, res) => {
     const authToken = crypt.generateAuthToken();
 
     authTokens[authToken] = email;
-
+    console.log(authTokens);
     res.cookie("AuthToken", authToken);
+
+    // res.json({ id: "insertId" })
     res.redirect("/salesDash");
     return;
   }
@@ -111,6 +113,7 @@ router.post("/api/index", (req, res) => {
     messageClass: "Invalid username or password",
     messageClass: "alert-danger"
   });
+  console.log('this is not true');
 });
 
 module.exports = router;

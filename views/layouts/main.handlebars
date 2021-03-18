@@ -39,17 +39,6 @@
       <ul class="list-unstyled components">
         <p>{{username}}</p>
         {{#each client-type}}
-        {{#if business-owner}}
-        <li class="active">
-          <a href="/salesDash">Sales</a>
-        </li>
-        <li>
-          <a href="/inventory">Inventory</a>
-        </li>
-        {{/if}}
-        {{/each}}
-
-        {{#each client-type}}
         {{#if customer}}
         <li>
           <h2>Cart</h2>
@@ -57,6 +46,13 @@
           {{cart-items}}
 
           <button class="checkoutBtn">Checkout</button>
+        </li>
+        {{else}}
+        <li class="active">
+          <a href="/salesDash">Sales</a>
+        </li>
+        <li>
+          <a href="/inventory">Inventory</a>
         </li>
         {{/if}}
         {{/each}}

@@ -19,5 +19,3 @@ document.getElementById("login-form").addEventListener("submit", e => {
     console.log(data);
   });
 });
-
-

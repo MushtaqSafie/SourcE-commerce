@@ -70,6 +70,16 @@ a[aria-expanded="true"] {
   background: #6d7fcc;
 }
 
+#email-address1,
+#passwordInput1,
+div label {
+  margin-top: 20px;
+}
+
+#businessSelect1 {
+  margin-bottom: 50px;
+}
+
 /* On screens that are less than 700px wide, make the sidebar into a topbar */
 @media screen and (max-width: 700px) {
   #sidebar {

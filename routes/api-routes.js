@@ -102,14 +102,13 @@ router.post("/api/index", (req, res) => {
     const authToken = crypt.generateAuthToken();
 
     authTokens[authToken] = email;
-    console.log(authTokens);
     res.cookie("AuthToken", authToken);
 
-    // res.json({ id: "insertId" })
-    res.redirect("/salesDash");
+    res.json({ idValid: "true" })
+    // res.redirect("/salesDash");
     return;
   }
-  res.render("index", {
+  res.render("salesDash", {
     messageClass: "Invalid username or password",
     messageClass: "alert-danger"
   });

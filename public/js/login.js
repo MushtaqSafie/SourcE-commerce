@@ -10,10 +10,12 @@ document.getElementById("login-form").addEventListener("submit", e => {
       email: "bryanmeow@me.com",
       password: "password"
     })
-  }).then(data => {
-    console.log(data);
-  });
- /* if (email === true && password === true) {
-    res send 
-  }*/
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+    });
+  /* if (email === true && password === true) {
+     res send 
+   }*/
 });

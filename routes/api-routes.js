@@ -31,20 +31,26 @@ router.get("/api/orders", (req, res) => {
 });
 
 router.post("/api/inventory", (req, res) => {
+  // converting base64 data to binary
+  const base64Data = req.body.product_image;
+  const buff = new Buffer(base64Data, "base64");
+  req.body.product_image = buff;
+
+  // save the record to database and generate image in public folder
   db.Products.create(req.body).then(result => {
     db.Products.findOne({
       where: {
         id: result.id
       }
     }).then(res => {
-      const buffer = Buffer.from(res.product_image, "base64");
-      fs.writeFileSync(`./public${res.product_url}`, buffer);
+      fs.writeFileSync(`./public${res.product_url}`, res.product_image);
     });
     res.json({ id: result.insertId });
   });
 });
 
 router.post("/api/customers", (req, res) => {
+  // eslint-disable-next-line prettier/prettier
   db.Customer.create(req.body).then(result => res.json({ id: result.insertId })
   );
 });

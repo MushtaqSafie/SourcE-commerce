@@ -50,6 +50,7 @@ router.post("/api/inventory", (req, res) => {
 });
 
 router.post("/api/customers", (req, res) => {
+  // eslint-disable-next-line prettier/prettier
   db.Customer.create(req.body).then(result => res.json({ id: result.insertId })
   );
 });

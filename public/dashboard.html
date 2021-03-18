@@ -83,65 +83,39 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const chart = Highcharts.chart("container", {
+    var d = new Date();
+    d.setDate(d.getDate() - 5);
+    Highcharts.chart("container", {
       chart: {
         type: "line",
+        zoomType: "x",
       },
       title: {
         text: "Weekly Sales Performance",
       },
       xAxis: {
         type: "datetime",
-      },
-      yAxis: {
-        title: {
-          text: "$ Weekly Earnings $",
-        },
-      },
-      series: [
-        {
-          name: "Sales Total",
-          data: [10, 5, 35, 25, 15, 60, 40],
-          pointStart: Date.UTC(2021, 1, 7),
-          pointInterval: 24 * 3600 * 1000, // one week
-        },
-      ],
-    });
+        // maxZoom: 48 * 3600 * 1000,
+        // tickInterval: 24 * 3600 * 1000,
+        // tickPositioner: function(min, max) {
+        //   var interval = this.options.tickInterval,
+        //     ticks = [],
+        //     count = 0;
 
-    const chart2 = Highcharts.chart("container2", {
-      chart: {
-        type: "line",
-      },
-      title: {
-        text: "Weekly Sales Performance",
-      },
-      xAxis: {
-        type: "datetime",
-      },
-      yAxis: {
-        title: {
-          text: "$ Weekly Earnings $",
-        },
-      },
-      series: [
-        {
-          name: "Sales Total",
-          data: [40, 60, 15, 25, 35, 5, 10],
-          pointStart: Date.UTC(2021, 1, 7),
-          pointInterval: 24 * 3600 * 1000, // one week
-        },
-      ],
-    });
+        //   while (min < max) {
+        //     ticks.push(min);
+        //     min += interval;
+        //     count++;
+        //   }
 
-    const chart3 = Highcharts.chart("container3", {
-      chart: {
-        type: "line",
-      },
-      title: {
-        text: "Weekly Sales Performance",
-      },
-      xAxis: {
-        type: "datetime",
+        //   ticks.info = {
+        //     unitName: "day",
+        //     count: 1,
+        //     higherRanks: {},
+        //     totalRange: interval * count,
+        //   };
+        //   return ticks;
+        // },
       },
       yAxis: {
         title: {
@@ -152,11 +126,91 @@
         {
           name: "Sales Total",
           data: [25, 10, 40, 15, 60, 5, 35],
-          pointStart: Date.UTC(2021, 1, 7),
+          pointStart: Date.UTC(
+            d.getUTCFullYear(),
+            d.getUTCMonth(),
+            d.getUTCDate()
+          ),
           pointInterval: 24 * 3600 * 1000, // one week
         },
       ],
     });
-    // return chart;
+    console.log(d);
   });
+
+  // const chart = Highcharts.chart("container", {
+  //   chart: {
+  //     type: "line",
+  //   },
+  //   title: {
+  //     text: "Weekly Sales Performance",
+  //   },
+  //   xAxis: {
+  //     type: "datetime",
+  //   },
+  //   yAxis: {
+  //     title: {
+  //       text: "$ Weekly Earnings $",
+  //     },
+  //   },
+  //   series: [
+  //     {
+  //       name: "Sales Total",
+  //       data: [10, 5, 35, 25, 15, 60, 40],
+  //       pointStart: Date.UTC(2021, 1, 7),
+  //       pointInterval: 24 * 3600 * 1000, // one week
+  //     },
+  //   ],
+  // });
+
+  // const chart2 = Highcharts.chart("container2", {
+  //   chart: {
+  //     type: "line",
+  //   },
+  //   title: {
+  //     text: "Weekly Sales Performance",
+  //   },
+  //   xAxis: {
+  //     type: "datetime",
+  //   },
+  //   yAxis: {
+  //     title: {
+  //       text: "$ Weekly Earnings $",
+  //     },
+  //   },
+  //   series: [
+  //     {
+  //       name: "Sales Total",
+  //       data: [40, 60, 15, 25, 35, 5, 10],
+  //       pointStart: Date.UTC(2021, 1, 7),
+  //       pointInterval: 24 * 3600 * 1000, // one week
+  //     },
+  //   ],
+  // });
+
+  // const chart3 = Highcharts.chart("container3", {
+  //   chart: {
+  //     type: "line",
+  //   },
+  //   title: {
+  //     text: "Weekly Sales Performance",
+  //   },
+  //   xAxis: {
+  //     type: "datetime",
+  //   },
+  //   yAxis: {
+  //     title: {
+  //       text: "$ Weekly Earnings $",
+  //     },
+  //   },
+  //   series: [
+  //     {
+  //       name: "Sales Total",
+  //       data: [25, 10, 40, 15, 60, 5, 35],
+  //       pointStart: Date.UTC(2021, 1, 7),
+  //       pointInterval: 24 * 3600 * 1000, // one week
+  //     },
+  //   ],
+  // });
+  // return chart;
 </script>

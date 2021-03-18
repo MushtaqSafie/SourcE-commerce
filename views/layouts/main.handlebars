@@ -11,23 +11,21 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css" type="text/css" />
-  <title>SourcE-commerce Login Page</title>
+  <title>SourcE-commerce</title>
 </head>
 
 <body>
   <div class="wrapper">
     {{#unless sidebar}}
-    <div id="content">
+    <main id="content">
       <header>
-        <h1>{{heading}}</h1>
+        <h1 class="indexHeading">{{heading}}</h1>
       </header>
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          {{{ body }}}
-        </div>
-      </nav>
-    </div>
+      <div class="container-fluid">
+        {{{ body }}}
+      </div>
+    </main>
     {{/unless}}
 
     {{#if sidebar}}
@@ -82,17 +80,15 @@
       </li>
     </nav>
 
-    <div id="content">
+    <main id="content">
       <header>
-        <h1>{{heading}}</h1>
+        <h1 class="appHeading">{{heading}}</h1>
       </header>
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          {{{ body }}}
-        </div>
-      </nav>
-    </div>
+      <div class="container-fluid">
+        {{{ body }}}
+      </div>
+    </main>
     {{/if}}
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

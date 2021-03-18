@@ -49,17 +49,17 @@ router.post("/api/inventory", (req, res) => {
   });
 });
 
-router.post("/api/customers", (req, res) => {
-  // eslint-disable-next-line prettier/prettier
-  db.Customer.create(req.body).then(result => res.json({ id: result.insertId })
-  );
-});
+// router.post("/api/customers", (req, res) => {
+//   // eslint-disable-next-line prettier/prettier
+//   db.Customer.create(req.body).then(result => res.json({ id: result.insertId })
+//   );
+// });
 
 router.post("/api/orders", (req, res) => {
   db.Orders.create(req.body).then(result => res.json({ id: result.insertId }));
 });
 
-router.put("/api/burger/:id", (req, res) => {
+router.put("/api/orders/:id", (req, res) => {
   db.Order.update(req.body, {
     where: {
       id: req.body.id
@@ -72,85 +72,80 @@ router.put("/api/burger/:id", (req, res) => {
   // });
 });
 
-/* Authentication starts below
- */
+// Authentication starts below
 
-router.get("/index", (req, res) => {
-  res.render("index");
-});
+const crypt = require("../config/crypto");
+const authTokens = {};
 
-router.post("/index", (req, res) => {
-  const { email, password } = req.body;
-  const hashedPassword = getHashedPassword(password);
-  const customer = customers.find(c => {
-    return c.email === email && hashedPassword === c.password;
-  });
+router.post("/api/index", (req, res) => {
+  const customers = [];
 
-  if (customer) {
-    const authToken = generateAuthToken();
+  db.Customer.findAll({
+    attributes: ["email", "user_password"]
+  }).then(data => {
+    data.forEach(item => {
+      customers.push(item.dataValues);
+    });
 
-    authTokens[authToken] = email;
+    const { email, password } = req.body;
+    const hashedPassword = crypt.getHashedPassword(password);
+    const customer = customers.find(c => {
+      return c.email === email && hashedPassword === c.user_password;
+    });
 
-    res.cookie("AuthToken", authToken);
-    res.redirect("/salesDash");
-    return;
-  }
-  res.render("/index", {
-    messageClass: "Invalid username or password",
-    messageClass: "alert-danger"
-  });
-});
+    if (customer) {
+      const authToken = crypt.generateAuthToken();
 
-router.get("/createAccount", (req, res) => {
-  res.render("createAccount");
-});
+      authTokens[authToken] = email;
+      console.log(authTokens);
+      res.cookie("AuthToken", authToken);
 
-router.post("/createAccount", (req, res) => {
-  const { email, firstName, lastName, password, confirmPassword } = req.body;
-
-  // Check if the password and confirm password fields match
-  if (password === confirmPassword) {
-    //Check if user with the same email is registered
-    if (customers.find(customer => customer.email === email)) {
-      res.render("createAccount", {
-        message: "User already created.",
-        messageClass: "alert-danger"
-      });
-
+      res.json({ isValid: "true" });
+      console.log("true");
+      // res.redirect("/salesDash");
       return;
     }
-    const hashedPassword = getHashedPassword(password);
-
-    //Store user into database
-    customers.push({
-      firstName,
-      lastName,
-      email,
-      password: hashedPassword
-    });
-
-    res.render("index", {
-      message: "Registration Complete. Continue to login please.",
-      messageClass: "alert-success"
-    });
-  } else {
-    res.render("createAccount", {
-      message: "Password is not a match",
-      messageClass: "alert-danger"
-    });
-  }
+    res.json({ isValid: "false" });
+    console.log("false");
+  });
 });
 
-router.get("/salesDash", (req, res) => {
-  if (req.customer) {
-    //res.render('/protected');
-    console.log("reached");
-  } else {
-    res.render("/index", {
-      message: "Please login to continue",
-      messageClass: "alert-danger"
-    });
-  }
-});
+// router.post("/api/createAccount", (req, res) => {
+//   const { email, firstName, lastName, password, confirmPassword } = req.body;
+
+//   // Check if the password and confirm password fields match
+//   if (password === confirmPassword) {
+//     //Check if user with the same email is registered
+//     if (customers.find(customer => customer.email === email)) {
+//       res.render("createAccount", {
+//         message: "User already created.",
+//         messageClass: "alert-danger"
+//       });
+
+//       return;
+//     }
+//     const hashedPassword = crypt.getHashedPassword(password);
+
+//     //Store user into database
+//     customers.push({
+//       firstName,
+//       lastName,
+//       email,
+//       password: hashedPassword
+//     });
+
+//     // also create authToken and cookies authToken
+
+//     res.render("login", {
+//       message: "Registration Complete. Continue to login please.",
+//       messageClass: "alert-success"
+//     });
+//   } else {
+//     res.render("createAccount", {
+//       message: "Password is not a match",
+//       messageClass: "alert-danger"
+//     });
+//   }
+// });
 
 module.exports = router;

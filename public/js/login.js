@@ -1,21 +1,23 @@
 document.getElementById("login-form").addEventListener("submit", e => {
-  alert("you clicked me");
   e.preventDefault();
-});
-
-document.getElementById("login-form").addEventListener("submit", e => {
-  e.preventDefault();
-  fetch("api/customers", {
+  fetch("/api/index", {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      email: "bryanmeow@me.com",
-      password: "password"
+      email: document.getElementById("email-address1").value.trim(),
+      password: document.getElementById("passwordInput1").value.trim()
     })
-  }).then(data => {
-    console.log(data);
-  });
+  })
+    .then(res => res.json())
+    .then(data => {
+      // eslint-disable-next-line eqeqeq
+      if (data.isValid == "true") {
+        window.location.href = "/salesDash";
+      } else {
+        // the is login user is not valid display a message in <div id='notValid-message'>
+      }
+    });
 });

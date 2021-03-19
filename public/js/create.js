@@ -53,15 +53,15 @@ document.addEventListener("DOMContentLoaded", event => {
   document.getElementById("create-form").addEventListener("submit", e => {
     e.preventDefault();
 
-  // Submits new acct details then redirects
-  const createAcct = acct => {
-    fetch("/api/customers", {
+    // Submits new acct details then redirects
+    //const createAcct = acct => {
+    fetch("/api/createAccount", {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
       },
-      body:JSON.stringify({
+      body: JSON.stringify({
         email: emailInput,
         password: passwordInput
       })
@@ -70,7 +70,9 @@ document.addEventListener("DOMContentLoaded", event => {
       .then(data => {
         console.log(data);
         // window.location.href = "/";
-      })
+      });
+    /*if 
       .catch(err => console.error(err));
-  };
+  };*/
+  });
 });

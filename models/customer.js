@@ -8,9 +8,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    phone_number: {
-      type: DataTypes.INTEGER(10)
-    },
     email: {
       type: DataTypes.STRING,
       allowNull: false
@@ -18,6 +15,14 @@ module.exports = (sequelize, DataTypes) => {
     user_password: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    business_name: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: null
+    },
+    phone_number: {
+      type: DataTypes.INTEGER(10)
     },
     // change to client-type & values = "customer", "business-owner"?
     client_type: {

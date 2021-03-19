@@ -24,37 +24,48 @@ document.addEventListener("DOMContentLoaded", event => {
     };
     if (
       !userData.fnInput ||
-      !userData.lnInput.value.trim() ||
-      !userData.emailInput.value.trim() ||
-      !userData.passwordInput.value.trim() ||
-      !userData.confirmPasswordInput.value.trim()
+      !userData.lnInput ||
+      !userData.emailInput ||
+      !userData.passwordInput ||
+      !userData.confirmPasswordInput
     ) {
       alert("Fields cannot be blank!");
       return;
     }
   });
-  console.log("something");
-  fetch("/api/createAccount", {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      email: emailInput,
-      password: passwordInput
+  const createAcct = (
+    fnInput,
+    lnInput,
+    emailInput,
+    passwordInput,
+    confirmPasswordInput
+  ) => {
+    console.log("something");
+    fetch("/api/createAccount", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        first_name: fnInput,
+        last_name: lnInput,
+        email: emailInput,
+        password: passwordInput,
+        confirmPassword: confirmPasswordInput
+      })
     })
-  })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data);
-      if (passwordInput.value === confirmPasswordInput.value) {
-        createAcct(newAcct);
-        window.location.href = "/login";
-      } else {
-        alert("Passwords do not match!");
-        window.location.href = "/createAccount";
-        return;
-      }
-    });
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        if (passwordInput.value === confirmPasswordInput.value) {
+          createAcct(newAcct);
+          window.location.href = "/login";
+        } else {
+          alert("Passwords do not match!");
+          window.location.href = "/createAccount";
+          return;
+        }
+      });
+  };
 });

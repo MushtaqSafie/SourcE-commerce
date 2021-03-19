@@ -49,12 +49,6 @@ router.post("/api/inventory", (req, res) => {
   });
 });
 
-// router.post("/api/customers", (req, res) => {
-//   // eslint-disable-next-line prettier/prettier
-//   db.Customer.create(req.body).then(result => res.json({ id: result.insertId })
-//   );
-// });
-
 router.post("/api/orders", (req, res) => {
   db.Orders.create(req.body).then(result => res.json({ id: result.insertId }));
 });
@@ -119,7 +113,7 @@ router.post("/api/createAccount", (req, res) => {
   const { email, firstName, lastName, password, confirmPassword } = req.body;
   console.log(req.body);
 
-  //   // Check if the password and confirm password fields match
+  //Check if the password and confirm password fields match
   /*if (password === confirmPassword) {
     //     //Check if user with the same email is registered
     if (customers.find(customer => customer.email === email)) {
@@ -130,30 +124,22 @@ router.post("/api/createAccount", (req, res) => {
 
       return;
     }
-    const hashedPassword = crypt.getHashedPassword(password);
+    */
+  //Store user into database
+  const hashedPassword = crypt.getHashedPassword(password);
+  db.Customer.create({
+    first_name: firstName,
+    last_name: lastName,
+    email: email,
+    user_password: hashedPassword
+  }).then(result => console.log(result));
+  res.json({ id: "5"});
 
-    //     //Store user into database
-    customers.push({
-      firstName,
-      lastName,
-      email,
-      password: hashedPassword
-    });
-
-    //     // also create authToken and cookies authToken
-
-    res.render("login", {
-      message: "Registration Complete. Continue to login please.",
-      messageClass: "alert-success"
-    });
-  } else {
-    res.render("createAccount", {
-      message: "Password is not a match",
-      messageClass: "alert-danger"
-    });
-  }
-  */
+  //     // also create authToken and cookies authToken
+  /*res.render("salesDash", {
+    message: "Registration Complete. Continue to login please.",
+    messageClass: "alert-success"
+  });*/
 });
-
 
 module.exports = router;

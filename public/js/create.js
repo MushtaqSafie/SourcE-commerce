@@ -1,3 +1,5 @@
+const { use } = require("../../routes/api-routes");
+
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
 document.addEventListener("DOMContentLoaded", event => {
   if (event) {
@@ -32,6 +34,18 @@ document.addEventListener("DOMContentLoaded", event => {
       alert("Fields cannot be blank!");
       return;
     }
+    createAcct(
+      userData.fnInput,
+      userData.lnInput,
+      userData.emailInput,
+      userData.passwordInput,
+      userData.confirmPasswordInput
+    );
+    fnInput.val("");
+    lnInput.val("");
+    emailInput.val("");
+    passwordInput.val("");
+    confirmPasswordInput.val("");
   });
   const createAcct = (
     fnInput,

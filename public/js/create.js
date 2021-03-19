@@ -10,9 +10,6 @@ document.addEventListener("DOMContentLoaded", event => {
   const emailInput = document.getElementById("email-address");
   const passwordInput = document.getElementById("passwordInput");
   const confirmPasswordInput = document.getElementById("confirmPasswordInput");
-  const businessInput = document.getElementById("business-name");
-  const phoneInput = document.getElementById("phone-number");
-  const createForm = document.getElementById("create-form");
 
   // Event handler for when form is submitted
   //const handleFormSubmit = e => {
@@ -31,34 +28,6 @@ document.addEventListener("DOMContentLoaded", event => {
     return;
   }
 }
-    // Make sure the form isn't empty
-   
-
-    const newAcct = {
-      first_name: fnInput.value.trim(),
-      last_name: lnInput.value.trim(),
-      email: emailInput.value.trim(),
-      user_password: passwordInput.value.trim(),
-      business_name: businessInput.value.trim(),
-      phone_number: phoneInput.value.trim()
-    };
-
-    // Make sure passwords match
-    if (passwordInput.value === confirmPasswordInput.value) {
-      createAcct(newAcct);
-    } else {
-      alert("Passwords do not match!");
-      return;
-    }
-  };
-
-  createForm.addEventListener("submit", handleFormSubmit);
-
-  document.getElementById("create-form").addEventListener("submit", e => {
-    e.preventDefault();
-
-    // Submits new acct details then redirects
-    //const createAcct = acct => {
     console.log("something");
     fetch("/api/createAccount", {
       method: "POST",
@@ -84,4 +53,3 @@ document.addEventListener("DOMContentLoaded", event => {
         }
       });
   });
-});

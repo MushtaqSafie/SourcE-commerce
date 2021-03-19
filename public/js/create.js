@@ -15,16 +15,20 @@ document.addEventListener("DOMContentLoaded", event => {
   const createForm = document.getElementById("create-form");
 
   // Event handler for when form is submitted
-  const handleFormSubmit = e => {
+  //const handleFormSubmit = e => {
+  document.getElementById("login-form").addEventListener("submit", e => {
+  e.preventDefault();
     e.preventDefault();
-
+    const userData = {
+      first_name: fnInput.value.trim(),
+      last_name: lnInput.value.trim(),
+      email: emailInput.value.trim(),
+      user_password: passwordInput.value.trim(),
+      confirmPassword: confirmPasswordInput.value.trim()
+    };
+    }
     // Make sure the form isn't empty
-    if (
-      !fnInput.value.trim() ||
-      !lnInput.value.trim() ||
-      !emailInput.value.trim() ||
-      !passwordInput.value.trim() ||
-      !confirmPasswordInput.value.trim()
+    if (!userData.fnInput || !userData.lnInput.value.trim() || !userData.emailInput.value.trim() || !userData.passwordInput.value.trim() || !userData.confirmPasswordInput.value.trim()
     ) {
       alert("Fields cannot be blank!");
       return;

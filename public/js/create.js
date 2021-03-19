@@ -50,6 +50,9 @@ document.addEventListener("DOMContentLoaded", event => {
 
   createForm.addEventListener("submit", handleFormSubmit);
 
+  document.getElementById("create-form").addEventListener("submit", e => {
+    e.preventDefault();
+
   // Submits new acct details then redirects
   const createAcct = acct => {
     fetch("/api/customers", {
@@ -58,8 +61,12 @@ document.addEventListener("DOMContentLoaded", event => {
         Accept: "application/json",
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(acct)
+      body:JSON.stringify({
+        email: emailInput,
+        password: passwordInput
+      })
     })
+      .then(res => res.json())
       .then(data => {
         console.log(data);
         // window.location.href = "/";

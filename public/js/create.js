@@ -70,23 +70,12 @@ document.addEventListener("DOMContentLoaded", event => {
       .then(res => res.json())
       .then(data => {
         console.log(data);
-        if (data.isValid) {
-          switch (data.client_type) {
-          case "customer":
-            window.location.href = "/storeFront";
-            break;
-          case "business-owner":
-            window.location.href = "/salesDash";
-            break;
-          default:
-            break;
-          }
+        if (passwordInput.value === confirmPasswordInput.value) {
+          createAcct(newAcct);
         } else {
           alert("Passwords do not match!");
-          // the is login user is not valid display a message 
+          return;
         }
-    /*if 
-      .catch(err => console.error(err));
-  };*/
+      });
   });
 });

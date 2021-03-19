@@ -117,10 +117,10 @@ router.post("/api/index", (req, res) => {
 
 router.post("/api/createAccount", (req, res) => {
   const { email, firstName, lastName, password, confirmPassword } = req.body;
-  console.log({ email, firstName, lastName, password, confirmPassword });
+  console.log(req.body);
 
   //   // Check if the password and confirm password fields match
-  if (password === confirmPassword) {
+  /*if (password === confirmPassword) {
     //     //Check if user with the same email is registered
     if (customers.find(customer => customer.email === email)) {
       res.render("createAccount", {
@@ -152,6 +152,8 @@ router.post("/api/createAccount", (req, res) => {
       messageClass: "alert-danger"
     });
   }
+  */
 });
+
 
 module.exports = router;

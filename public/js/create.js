@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", event => {
 
     // Submits new acct details then redirects
     //const createAcct = acct => {
-    fetch("/api/createAccount", {
+    fetch("/api/customers", {
       method: "POST",
       headers: {
         Accept: "application/json",

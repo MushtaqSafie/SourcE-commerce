@@ -115,42 +115,42 @@ router.post("/api/index", (req, res) => {
   });
 });
 
-// router.post("/api/createAccount", (req, res) => {
-//   const { email, firstName, lastName, password, confirmPassword } = req.body;
+router.post("/api/createAccount", (req, res) => {
+  const { email, firstName, lastName, password, confirmPassword } = req.body;
 
-//   // Check if the password and confirm password fields match
-//   if (password === confirmPassword) {
-//     //Check if user with the same email is registered
-//     if (customers.find(customer => customer.email === email)) {
-//       res.render("createAccount", {
-//         message: "User already created.",
-//         messageClass: "alert-danger"
-//       });
+  //   // Check if the password and confirm password fields match
+  if (password === confirmPassword) {
+    //     //Check if user with the same email is registered
+    if (customers.find(customer => customer.email === email)) {
+      res.render("createAccount", {
+        message: "User already created.",
+        messageClass: "alert-danger"
+      });
 
-//       return;
-//     }
-//     const hashedPassword = crypt.getHashedPassword(password);
+      return;
+    }
+    const hashedPassword = crypt.getHashedPassword(password);
 
-//     //Store user into database
-//     customers.push({
-//       firstName,
-//       lastName,
-//       email,
-//       password: hashedPassword
-//     });
+    //     //Store user into database
+    customers.push({
+      firstName,
+      lastName,
+      email,
+      password: hashedPassword
+    });
 
-//     // also create authToken and cookies authToken
+    //     // also create authToken and cookies authToken
 
-//     res.render("login", {
-//       message: "Registration Complete. Continue to login please.",
-//       messageClass: "alert-success"
-//     });
-//   } else {
-//     res.render("createAccount", {
-//       message: "Password is not a match",
-//       messageClass: "alert-danger"
-//     });
-//   }
-// });
+    res.render("login", {
+      message: "Registration Complete. Continue to login please.",
+      messageClass: "alert-success"
+    });
+  } else {
+    res.render("createAccount", {
+      message: "Password is not a match",
+      messageClass: "alert-danger"
+    });
+  }
+});
 
 module.exports = router;

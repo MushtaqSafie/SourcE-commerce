@@ -1,5 +1,9 @@
+/* eslint-disable prettier/prettier */
 document.getElementById("login-form").addEventListener("submit", e => {
   e.preventDefault();
+  const emailInput = document.getElementById("email-address").value.trim();
+  const passwordInput = document.getElementById("passwordInput").value.trim();
+
   fetch("/api/index", {
     method: "POST",
     headers: {
@@ -7,17 +11,27 @@ document.getElementById("login-form").addEventListener("submit", e => {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      email: document.getElementById("email-address1").value.trim(),
-      password: document.getElementById("passwordInput1").value.trim()
+      email: emailInput,
+      password: passwordInput
     })
   })
     .then(res => res.json())
     .then(data => {
+      console.log(data);
       // eslint-disable-next-line eqeqeq
-      if (data.isValid == "true") {
-        window.location.href = "/salesDash";
+      if (data.isValid) {
+        switch (data.client_type) {
+        case "customer":
+          window.location.href = "/storeFront";
+          break;
+        case "business-owner":
+          window.location.href = "/salesDash";
+          break;
+        default:
+          break;
+        }
       } else {
-        // the is login user is not valid display a message in <div id='notValid-message'>
+        // the is login user is not valid display a message 
       }
     });
 });

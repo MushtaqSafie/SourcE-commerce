@@ -142,7 +142,6 @@ router.post("/api/createAccount", (req, res) => {
   });*/
 });
 
-
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const startDate = new Date().getDate();

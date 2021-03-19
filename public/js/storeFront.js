@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", event => {
   if (event) {
-    console.info("DOM loaded");
+    console.info("Storefront DOM loaded");
   }
 
   const cartBtn = document.querySelectorAll(".cartBtnH");

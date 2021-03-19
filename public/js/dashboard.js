@@ -1,17 +1,41 @@
 document.addEventListener("DOMContentLoaded", event => {
   if (event) {
-    console.info("DOM for dashboard loaded");
+    console.info("Dashboard DOM loaded");
   }
 
+  const d = new Date();
+  d.setDate(d.getDate() - 5);
   const salesChart = Highcharts.chart("container", {
     chart: {
-      type: "line"
+      type: "line",
+      zoomType: "x"
     },
     title: {
       text: "Weekly Sales Performance"
     },
     xAxis: {
       type: "datetime"
+      // maxZoom: 48 * 3600 * 1000,
+      // tickInterval: 24 * 3600 * 1000,
+      // tickPositioner: function(min, max) {
+      //   var interval = this.options.tickInterval,
+      //     ticks = [],
+      //     count = 0;
+
+      //   while (min < max) {
+      //     ticks.push(min);
+      //     min += interval;
+      //     count++;
+      //   }
+
+      //   ticks.info = {
+      //     unitName: "day",
+      //     count: 1,
+      //     higherRanks: {},
+      //     totalRange: interval * count,
+      //   };
+      //   return ticks;
+      // },
     },
     yAxis: {
       title: {
@@ -21,15 +45,16 @@ document.addEventListener("DOMContentLoaded", event => {
     series: [
       {
         name: "Sales Total",
-        // Data = sum of purchases made in one day
-        data: [10, 5, 35, 25, 15, 60, 40],
-        pointStart: Date.UTC(2021, 1, 7),
-        // for one week intervals, add "* 7" at end
-        pointInterval: 24 * 3600 * 1000
+        data: [25, 10, 40, 15, 60, 5, 35],
+        pointStart: Date.UTC(
+          d.getUTCFullYear(),
+          d.getUTCMonth(),
+          d.getUTCDate()
+        ),
+        pointInterval: 24 * 3600 * 1000 // one week
       }
     ]
   });
-
+  console.log(d);
   return salesChart;
-  // };
 });

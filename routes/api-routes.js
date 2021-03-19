@@ -78,35 +78,40 @@ const crypt = require("../config/crypto");
 const authTokens = {};
 
 router.post("/api/index", (req, res) => {
+  const { email, password } = req.body;
+  const hashedPassword = crypt.getHashedPassword(password);
   const customers = [];
+  // helo@me
+  // password
 
-  db.Customer.findAll({
-    attributes: ["email", "user_password"]
-  }).then(data => {
-    data.forEach(item => {
-      customers.push(item.dataValues);
-    });
+  db.Customer.findOne({
+    where: { email: email },
+    attributes: ["email", "user_password", "client_type"]
+  }).then(d => {
+    if (d === null) {
+      console.log("client not found");
+      return res.json({ isValid: false });
+    }
+    console.log(d.dataValues);
+    customers.push(d.dataValues);
 
-    const { email, password } = req.body;
-    const hashedPassword = crypt.getHashedPassword(password);
     const customer = customers.find(c => {
-      return c.email === email && hashedPassword === c.user_password;
+      return (
+        c.email.toLowerCase() === email.toLowerCase() &&
+        hashedPassword === c.user_password
+      );
     });
 
     if (customer) {
       const authToken = crypt.generateAuthToken();
 
       authTokens[authToken] = email;
-      console.log(authTokens);
       res.cookie("AuthToken", authToken);
 
-      res.json({ isValid: "true" });
-      console.log("true");
-      // res.redirect("/salesDash");
+      res.json({ isValid: true, client_type: d.client_type });
       return;
     }
-    res.json({ isValid: "false" });
-    console.log("false");
+    res.json({ isValid: false });
   });
 });
 

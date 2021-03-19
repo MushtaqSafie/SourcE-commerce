@@ -3,16 +3,13 @@
     <form id="login-form">
       <div class="form-group">
         <label for="email-address" id="email-address1">Email address</label>
-        <input name="email" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
+        <input name="email" type="email" id="email-address" class="form-control" aria-describedby="emailHelp"
+          placeholder="Enter email">
         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 
         <label for="passwordInput" id="passwordInput1">Password</label>
-        <input name="password" type="password" class="form-control" placeholder="Password"><br>
+        <input name="password" type="password" id="passwordInput" class="form-control" placeholder="Password"><br>
 
-        <label>
-          <input name="businessSelect" type="checkbox" class="form-check-label" id="businessSelect1"> Are you a Business
-          Owner?
-        </label>
         <br>
         <button type="submit" class="btn btn-primary" id="loginBtn">Login</button>
         <a type="button" class="btn btn-outline-dark" id="createAcctBtn" href="/createAccount"><i

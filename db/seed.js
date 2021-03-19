@@ -39,53 +39,199 @@ const customers = [
   }
 ];
 
-// const file = fs.readFile("../media/img/product.JPG", result => {
-//   return result;
-// });
+const products = [
+  {
+    product_name: "First product",
+    product_description: "Description of the product",
+    inventory: 100,
+    purchase_price: 15.22,
+    selling_price: 49.99,
+    product_url: "/img/1.JPG"
+  },
+  {
+    product_name: "First product",
+    product_description: "Description of the product",
+    inventory: 100,
+    purchase_price: 15.22,
+    selling_price: 49.99,
+    product_url: "/img/2.JPG"
+  },
+  {
+    product_name: "First product",
+    product_description: "Description of the product",
+    inventory: 100,
+    purchase_price: 15.22,
+    selling_price: 49.99,
+    product_url: "/img/3.JPG"
+  },
+  {
+    product_name: "First product",
+    product_description: "Description of the product",
+    inventory: 100,
+    purchase_price: 15.22,
+    selling_price: 49.99,
+    product_url: "/img/4.JPG"
+  }
+];
 
-// console.log(file);
-
-// const products = [
-//   {
-//     product_name: "First product",
-//     product_description: "Description of the product",
-//     inventory: 100,
-//     purchase_price: 15.22,
-//     selling_price: 49.99
-//   },
-//   {
-//     product_name: "Second product",
-//     product_description: "Description of the product",
-//     inventory: 100,
-//     purchase_price: 15.22,
-//     selling_price: 49.99
-//   },
-//   {
-//     product_name: "Third product",
-//     product_description: "Description of the product",
-//     inventory: 100,
-//     purchase_price: 15.22,
-//     selling_price: 49.99
-//   }
-// ];
-
-// const orders = [
-//   {
-//     quantity: 1,
-//     order_status: "cart-item",
-//     CustomerId: 1,
-//     ProductId: 1
-//   }
-// ];
+const orders = [
+  {
+    createdAt: "2021-03-19T03:58:54.000Z",
+    quantity: 1,
+    order_status: "cart-item",
+    CustomerId: 1,
+    ProductId: 2
+  },
+  {
+    createdAt: "2021-03-18T03:58:54.000Z",
+    quantity: 1,
+    order_status: "confirmed-order",
+    CustomerId: 2,
+    ProductId: 4
+  },
+  {
+    createdAt: "2021-03-17T03:58:54.000Z",
+    quantity: 1,
+    order_status: "cart-item",
+    CustomerId: 1,
+    ProductId: 2
+  },
+  {
+    createdAt: "2021-03-18T03:58:54.000Z",
+    quantity: 1,
+    order_status: "confirmed-order",
+    CustomerId: 1,
+    ProductId: 3
+  },
+  {
+    createdAt: "2021-03-15T03:58:54.000Z",
+    quantity: 1,
+    order_status: "confirmed-order",
+    CustomerId: 1,
+    ProductId: 2
+  },
+  {
+    createdAt: "2021-03-18T03:58:54.000Z",
+    quantity: 1,
+    order_status: "cart-item",
+    CustomerId: 1,
+    ProductId: 4
+  },
+  {
+    createdAt: "2021-03-18T03:58:54.000Z",
+    quantity: 1,
+    order_status: "confirmed-order",
+    CustomerId: 2,
+    ProductId: 3
+  },
+  {
+    createdAt: "2021-03-17T03:58:54.000Z",
+    quantity: 1,
+    order_status: "cart-item",
+    CustomerId: 1,
+    ProductId: 2
+  },
+  {
+    createdAt: "2021-03-20T03:58:54.000Z",
+    quantity: 1,
+    order_status: "confirmed-order",
+    CustomerId: 2,
+    ProductId: 4
+  },
+  {
+    createdAt: "2021-03-14T03:58:54.000Z",
+    quantity: 1,
+    order_status: "cart-item",
+    CustomerId: 1,
+    ProductId: 2
+  },
+  {
+    createdAt: "2021-03-13T03:58:54.000Z",
+    quantity: 1,
+    order_status: "confirmed-order",
+    CustomerId: 1,
+    ProductId: 3
+  },
+  {
+    createdAt: "2021-03-18T03:58:54.000Z",
+    quantity: 1,
+    order_status: "cart-item",
+    CustomerId: 1,
+    ProductId: 2
+  },
+  {
+    createdAt: "2021-03-18T03:58:54.000Z",
+    quantity: 1,
+    order_status: "cart-item",
+    CustomerId: 1,
+    ProductId: 4
+  },
+  {
+    createdAt: "2021-03-18T03:58:54.000Z",
+    quantity: 1,
+    order_status: "confirmed-order",
+    CustomerId: 2,
+    ProductId: 3
+  },
+  {
+    createdAt: "2021-03-20T03:58:54.000Z",
+    quantity: 1,
+    order_status: "cart-item",
+    CustomerId: 1,
+    ProductId: 2
+  },
+  {
+    createdAt: "2021-03-19T03:58:54.000Z",
+    quantity: 1,
+    order_status: "confirmed-order",
+    CustomerId: 2,
+    ProductId: 4
+  },
+  {
+    createdAt: "2021-03-14T03:58:54.000Z",
+    quantity: 1,
+    order_status: "cart-item",
+    CustomerId: 1,
+    ProductId: 2
+  },
+  {
+    createdAt: "2021-03-13T03:58:54.000Z",
+    quantity: 1,
+    order_status: "confirmed-order",
+    CustomerId: 1,
+    ProductId: 3
+  },
+  {
+    createdAt: "2021-03-12T03:58:54.000Z",
+    quantity: 1,
+    order_status: "confirmed-order",
+    CustomerId: 1,
+    ProductId: 2
+  },
+  {
+    createdAt: "2021-03-11T03:58:54.000Z",
+    quantity: 1,
+    order_status: "cart-item",
+    CustomerId: 1,
+    ProductId: 4
+  },
+  {
+    createdAt: "2021-03-10T03:58:54.000Z",
+    quantity: 1,
+    order_status: "confirmed-order",
+    CustomerId: 2,
+    ProductId: 3
+  }
+];
 
 customers.forEach(currentItem => {
   db.Customer.create(currentItem).then(result => console.log(result));
 });
 
-// products.forEach(currentItem => {
-//   db.Products.create(currentItem).then(result => console.log(result));
-// });
+products.forEach(currentItem => {
+  db.Products.create(currentItem).then(result => console.log(result));
+});
 
-// orders.forEach(currentItem => {
-//   db.Orders.create(currentItem).then(result => console.log(result));
-// });
+orders.forEach(currentItem => {
+  db.Orders.create(currentItem).then(result => console.log(result));
+});

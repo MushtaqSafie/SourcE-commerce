@@ -16,23 +16,23 @@ document.addEventListener("DOMContentLoaded", event => {
 
   // Event handler for when form is submitted
   //const handleFormSubmit = e => {
-  document.getElementById("login-form").addEventListener("submit", e => {
+    document.getElementById("login-form").addEventListener("submit", e => {
   e.preventDefault();
-    e.preventDefault();
-    const userData = {
-      first_name: fnInput.value.trim(),
-      last_name: lnInput.value.trim(),
-      email: emailInput.value.trim(),
-      user_password: passwordInput.value.trim(),
-      confirmPassword: confirmPasswordInput.value.trim()
-    };
-    }
+  const userData = {
+    first_name: fnInput.value.trim(),
+    last_name: lnInput.value.trim(),
+    email: emailInput.value.trim(),
+    user_password: passwordInput.value.trim(),
+    confirmPassword: confirmPasswordInput.value.trim()
+  };
+  if (!userData.fnInput || !userData.lnInput.value.trim() || !userData.emailInput.value.trim() || !userData.passwordInput.value.trim() || !userData.confirmPasswordInput.value.trim()
+  ) {
+    alert("Fields cannot be blank!");
+    return;
+  }
+}
     // Make sure the form isn't empty
-    if (!userData.fnInput || !userData.lnInput.value.trim() || !userData.emailInput.value.trim() || !userData.passwordInput.value.trim() || !userData.confirmPasswordInput.value.trim()
-    ) {
-      alert("Fields cannot be blank!");
-      return;
-    }
+   
 
     const newAcct = {
       first_name: fnInput.value.trim(),

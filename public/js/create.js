@@ -72,8 +72,10 @@ document.addEventListener("DOMContentLoaded", event => {
         console.log(data);
         if (passwordInput.value === confirmPasswordInput.value) {
           createAcct(newAcct);
+          window.location.href = "/login";
         } else {
           alert("Passwords do not match!");
+          window.location.href = "/createAccount";
           return;
         }
       });

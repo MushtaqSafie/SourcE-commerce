@@ -117,7 +117,7 @@ router.post("/api/index", (req, res) => {
 
 router.post("/api/createAccount", (req, res) => {
   const { email, firstName, lastName, password, confirmPassword } = req.body;
-  consolelog({ email, firstName, lastName, password, confirmPassword });
+  console.log({ email, firstName, lastName, password, confirmPassword });
 
   //   // Check if the password and confirm password fields match
   if (password === confirmPassword) {

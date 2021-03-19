@@ -153,4 +153,57 @@ router.post("/api/index", (req, res) => {
 //   }
 // });
 
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
+const startDate = new Date().getDate();
+const weekly = new Date().setDate(startDate - 7);
+
+router.get("/api/chartData", (req, res) => {
+  db.Orders.findAll({
+    include: [
+      {
+        model: db.Products,
+        attributes: ["product_name", "selling_price"]
+      }
+    ],
+    where: {
+      order_status: "confirmed-order",
+      createdAt: {
+        [Op.between]: [weekly, new Date()]
+      }
+    },
+    attributes: ["createdAt", "quantity", "order_status"]
+  }).then(data => {
+    const helper = [];
+    const result = [];
+
+    for (n = startDate; n > startDate - 8; n--) {
+      helper.push({ dateOrder: n, totalSale: 0 });
+    }
+
+    data.forEach(item => {
+      const i = item.dataValues;
+      const newObj = {
+        dateOrder: i.createdAt.getDate(),
+        totalSale: i.quantity * i.Product.selling_price
+      };
+      helper.push(newObj);
+    });
+
+    helper.reduce((res, value) => {
+      if (!res[value.dateOrder]) {
+        res[value.dateOrder] = {
+          dateOrder: value.dateOrder,
+          totalSale: 0
+        };
+        result.push(res[value.dateOrder]);
+      }
+      res[value.dateOrder].totalSale += value.totalSale;
+      return res;
+    }, {});
+
+    res.json(result);
+  });
+});
+
 module.exports = router;

@@ -55,7 +55,8 @@ document.addEventListener("DOMContentLoaded", event => {
 
     // Submits new acct details then redirects
     //const createAcct = acct => {
-    fetch("/api/customers", {
+    console.log("something");
+    fetch("/api/createAccount", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -69,8 +70,21 @@ document.addEventListener("DOMContentLoaded", event => {
       .then(res => res.json())
       .then(data => {
         console.log(data);
-        // window.location.href = "/";
-      });
+        if (data.isValid) {
+          switch (data.client_type) {
+          case "customer":
+            window.location.href = "/storeFront";
+            break;
+          case "business-owner":
+            window.location.href = "/salesDash";
+            break;
+          default:
+            break;
+          }
+        } else {
+          alert("Passwords do not match!");
+          // the is login user is not valid display a message 
+        }
     /*if 
       .catch(err => console.error(err));
   };*/

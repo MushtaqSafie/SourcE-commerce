@@ -133,7 +133,7 @@ router.post("/api/createAccount", (req, res) => {
     email: email,
     user_password: hashedPassword
   }).then(result => console.log(result));
-  res.json({ id: "5"});
+  res.json({ id: "5" });
 
   //     // also create authToken and cookies authToken
   /*res.render("salesDash", {
@@ -141,5 +141,4 @@ router.post("/api/createAccount", (req, res) => {
     messageClass: "alert-success"
   });*/
 });
-
 module.exports = router;

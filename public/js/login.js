@@ -29,13 +29,13 @@ document.addEventListener("DOMContentLoaded", event => {
           // checking for client-type if its customer OR business-owner
           if (data.client_type === "business-owner") {
             // render salesDash
-            // window.location.href = "/salesDash";
+            window.location.href = "/salesDash";
             console.log("client is a business owner");
 
             // display the first and last name of the user on sidebar
           } else {
             // client type is "customer" render StoreFront
-            // window.location.href = "/storeFront";
+            window.location.href = "/storeFront";
             console.log("client is a customer");
 
             // display the first and last name of the user on sidebar

@@ -110,6 +110,7 @@ router.post("/api/index", (req, res) => {
 });
 
 router.post("/api/createAccount", (req, res) => {
+  // eslint-disable-next-line no-unused-vars
   const { email, firstName, lastName, password, confirmPassword } = req.body;
   /*console.log(password);
   console.log("data type: ", typeof req.body);

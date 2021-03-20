@@ -35,7 +35,8 @@
       </div>
 
       <img class="user-img" src="{{user_image}}" alt="user-img" />
-      <div id="loginUser"> {{username}}
+      <div id="loginUser">
+        {{!-- {{username}} --}}
       </div>
 
       <ul class="list-unstyled components">
@@ -48,6 +49,7 @@
 
           <button class="checkoutBtn">Checkout</button>
         </li>
+
         {{else}}
         <li class="active">
           <a href="/salesDash">Sales</a>

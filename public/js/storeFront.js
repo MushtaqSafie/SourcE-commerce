@@ -5,26 +5,29 @@ document.addEventListener("DOMContentLoaded", event => {
 
   const cartBtn = document.querySelectorAll(".cartBtnH");
 
+  // -------- customer id needs to be update
+  const customerDataId = document
+    .getElementById("loginUser")
+    .getAttribute("data-id");
+
+  console.log(customerDataId);
   // Set up the event listener for the cart button
   if (cartBtn) {
     cartBtn.forEach(button => {
       button.addEventListener("click", e => {
         e.preventDefault();
         // Grabs the id of the element that goes by the name, "id"
-        //const id = e.target.getAttribute("data-id");
+        // quantity, customer id, product information
+        //  document.getElementById("inventory-description").value.trim()
         const newCart = {
-          product_name: document.getElementById("product-name").value.trim(),
-          product_description: document
-            .getElementById("inventory-description")
-            .value.trim(),
-          inventory: document.getElementById("inventory-quantity").value.trim()
+          ProductId: e.target.getAttribute("data-id"),
+          CustomerId: customerDataId,
+          quantity: 1,
+          order_status: "cart-item"
         };
-        //quantity
-        //customer id
-        //product information
 
         // Send POST request to create a new quote
-        fetch("/api/orders", {
+        fetch("/api/cartItem", {
           method: "POST",
           headers: {
             Accept: "application/json",
@@ -35,10 +38,6 @@ document.addEventListener("DOMContentLoaded", event => {
           body: JSON.stringify(newCart)
         }).then(() => {
           // Empty the form
-
-          document.getElementById("product-name").value = "";
-          document.getElementById("inventory-description").value = "";
-          document.getElementById("inventory-quantity").value = "";
 
           // Reload the page so the user can see the new quote
           console.log("Created a new Cart Item");

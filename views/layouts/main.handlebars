@@ -40,15 +40,23 @@
 
       <ul class="list-unstyled components">
         {{!-- {{#each client-type}} --}}
-        {{#if business-owner}}
+        {{#if customer}}
+        <li>
+          <h2>Cart</h2>
+
+          {{cart-items}}
+
+          <button class="checkoutBtn">Checkout</button>
+        </li>
+        {{else}}
         <li class="active">
           <a href="/salesDash">Sales</a>
         </li>
         <li>
           <a href="/inventory">Inventory</a>
         </li>
-
-        {{!-- {{/each}} --}}
+        {{/if}}
+        {{/each}}
       </ul>
 
       {{!-- TEMP NAV LINKS --}}
@@ -78,26 +86,6 @@
         {{{ body }}}
       </div>
     </main>
-
-    {{else}}
-    <div id="cart">
-      <h2>Cart</h2>
-
-      {{cart-items}}
-
-      <button class="checkoutBtn">Checkout</button>
-    </div>
-
-    <main id="appContent">
-      <header>
-        <h1 class="appHeading">{{heading}}</h1>
-      </header>
-
-      <div class="container-fluid">
-        {{{ body }}}
-      </div>
-    </main>
-    {{/if}}
     {{/if}}
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

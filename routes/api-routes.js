@@ -110,10 +110,12 @@ router.post("/api/index", (req, res) => {
 });
 
 router.post("/api/createAccount", (req, res) => {
-  // ! "confirmPassword" removed for Travis; re-add if needed (after password)
-  const { email, firstName, lastName, password } = req.body;
+  // eslint-disable-next-line no-unused-vars
+  const { email, firstName, lastName, password, confirmPassword } = req.body;
+  /*console.log(password);
+  console.log("data type: ", typeof req.body);
   console.log(req.body);
-
+  */
   //Check if the password and confirm password fields match
   /*if (password === confirmPassword) {
     //     //Check if user with the same email is registered

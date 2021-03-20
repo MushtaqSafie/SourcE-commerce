@@ -80,13 +80,16 @@ router.post("/api/index", (req, res) => {
 
   db.Customer.findOne({
     where: { email: email },
-    attributes: ["email", "user_password", "client_type"]
+    attributes: ["id", "email", "user_password", "client_type"]
   }).then(d => {
     if (d === null) {
-      console.log("client not found");
-      return res.json({ isValid: false });
+      customers.push({
+        isValid: false,
+        client_type: "notFound",
+        user_password: ""
+      });
+      return res.json(customers[0]);
     }
-    console.log(d.dataValues);
     customers.push(d.dataValues);
 
     const customer = customers.find(c => {
@@ -102,10 +105,16 @@ router.post("/api/index", (req, res) => {
       authTokens[authToken] = email;
       res.cookie("AuthToken", authToken);
 
-      res.json({ isValid: true, client_type: d.client_type });
+      customers[0].isValid = true;
+      customers[0].client_type = d.client_type;
+      customers[0].user_password = "";
+      res.json(customers[0]);
       return;
     }
-    res.json({ isValid: false });
+    customers[0].isValid = false;
+    customers[0].client_type = "wrongPass";
+    customers[0].user_password = "";
+    res.json(customers[0]);
   });
 });
 
@@ -141,7 +150,6 @@ router.post("/api/createAccount", (req, res) => {
     messageClass: "alert-success"
   });*/
 });
-
 
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;

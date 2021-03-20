@@ -41,6 +41,8 @@ app.use((req, res, next) => {
 // Syncing our sequelize models and then starting our Express app
 // !! REMOVE "{ force: true }" @ deployment !!
 db.sequelize.sync().then(() => {
-  app.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
+  app.listen(PORT, () =>
+    // eslint-disable-next-line implicit-arrow-linebreak
+    console.log("Server listening on: http://localhost:" + PORT)
+  );
 });
-

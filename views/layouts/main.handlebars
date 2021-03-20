@@ -34,28 +34,21 @@
         <h3>SourcE-commerce</h3>
       </div>
 
-      <img class="user-img" src="{{user-image}}" alt="user-img" />
+      <img class="user-img" src="{{user_image}}" alt="user-img" />
+      <div id="loginUser">
+      </div>
 
       <ul class="list-unstyled components">
-        <p>{{username}}</p>
-        {{#each client-type}}
-        {{#if customer}}
-        <li>
-          <h2>Cart</h2>
-
-          {{cart-items}}
-
-          <button class="checkoutBtn">Checkout</button>
-        </li>
-        {{else}}
+        {{!-- {{#each client-type}}
+        {{#if business-owner}} --}}
         <li class="active">
           <a href="/salesDash">Sales</a>
         </li>
         <li>
           <a href="/inventory">Inventory</a>
         </li>
-        {{/if}}
-        {{/each}}
+        {{!-- {{/if}}
+        {{/each}} --}}
       </ul>
 
       {{!-- TEMP NAV LINKS --}}
@@ -85,6 +78,15 @@
         {{{ body }}}
       </div>
     </main>
+
+    {{!-- {{else}} --}}
+    <li>
+      <h2>Cart</h2>
+
+      {{cart-items}}
+
+      <button class="checkoutBtn">Checkout</button>
+    </li>
     {{/if}}
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -97,6 +99,7 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="login.js"></script>
 </body>
 
 </html>

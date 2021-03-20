@@ -80,7 +80,14 @@ router.post("/api/index", (req, res) => {
 
   db.Customer.findOne({
     where: { email: email },
-    attributes: ["id", "email", "user_password", "client_type"]
+    attributes: [
+      "id",
+      "first_name",
+      "last_name",
+      "email",
+      "user_password",
+      "client_type"
+    ]
   }).then(d => {
     if (d === null) {
       customers.push({
@@ -106,6 +113,8 @@ router.post("/api/index", (req, res) => {
       res.cookie("AuthToken", authToken);
 
       customers[0].isValid = true;
+      customers[0].first_name = d.first_name;
+      customers[0].last_name = d.last_name;
       customers[0].client_type = d.client_type;
       customers[0].user_password = "";
       res.json(customers[0]);

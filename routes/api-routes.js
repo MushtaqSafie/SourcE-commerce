@@ -129,7 +129,11 @@ router.post("/api/createAccount", (req, res) => {
   //Check if the password and confirm password fields match
   if (password === confirmPassword) {
     //     //Check if user with the same email is registered
-    if (db.Customer.findAll(customer => customer.email === email)) {
+    if (
+      db.Customer.findOne({ where: { email } }).then(
+        customer => customer.email === email
+      )
+    ) {
       res.render("createAccount", {
         message: "User already created.",
         messageClass: "alert-danger"
@@ -138,6 +142,7 @@ router.post("/api/createAccount", (req, res) => {
       return;
       //Store user into database
     }
+    findOne({ email });
     const hashedPassword = crypt.getHashedPassword(password);
     db.Customer.create({
       first_name: firstName,

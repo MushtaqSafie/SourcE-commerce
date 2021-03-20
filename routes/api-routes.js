@@ -119,6 +119,7 @@ router.post("/api/index", (req, res) => {
 
       authTokens[authToken] = email;
       res.cookie("AuthToken", authToken);
+      res.send("Cookie sent!");
 
       customers[0].isValid = true;
       customers[0].first_name = d.first_name;

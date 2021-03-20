@@ -21,9 +21,13 @@ router.get("/createAccount", (req, res) => {
 });
 
 router.get("/storeFront", (req, res) => {
+  console.log(req.cookies, "hello");
   db.Products.findAll().then(data => {
     const obj = data;
     // console.log(obj);
+    // res
+    //   .cookie("AuthToken", authToken, { maxAge: 10800 })
+    //   .send("cookie set", console.log("COOKIES!!"));
     res.render("storeFront", {
       products: obj,
       heading: "Storefront",

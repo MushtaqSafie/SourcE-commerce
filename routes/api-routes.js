@@ -128,7 +128,7 @@ router.post("/api/createAccount", (req, res) => {
   //Check if the password and confirm password fields match
   if (password === confirmPassword) {
     //     //Check if user with the same email is registered
-    if (db.customers.find(customer => customer.email === email)) {
+    if (db.Customer.find(customer => customer.email === email)) {
       res.render("createAccount", {
         message: "User already created.",
         messageClass: "alert-danger"

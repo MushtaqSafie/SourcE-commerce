@@ -1,7 +1,6 @@
 const express = require("express");
 const fs = require("fs");
 const db = require("../models");
-//const db = require("../models);
 
 const router = express.Router();
 

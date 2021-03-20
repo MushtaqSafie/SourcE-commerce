@@ -41,7 +41,8 @@ document.getElementById("login-form").addEventListener("submit", e => {
 
         } else {
           console.log("client is not found");
-          // display a msg that user is not found type correct email&pass OR create new account
+          // display a msg that user is not found. type a correct email&pass OR create new account
+          
         }
       }
     });

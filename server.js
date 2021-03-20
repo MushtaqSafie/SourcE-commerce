@@ -29,19 +29,11 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
-// Handlebars.registerHelper("client-type", function(
-//   customer,
-//   business,
-//   clientType,
-//   options
-// ) {
-//   if (clientType === customer) {
-//     return options.fn(this);
+// Handlebars.registerHelper("clientType", type => {
+//   if (type === "customer") {
+//     return true;
 //   }
-
-//   if (clientType === business) {
-//     return options.inverse(this);
-//   }
+//   return false;
 // });
 
 // Invoke routes

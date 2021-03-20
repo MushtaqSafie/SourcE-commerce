@@ -1,5 +1,5 @@
 module.exports = {
-  isCustomerType: function(type) {
+  clientType: function(type) {
     if (type === "customer") {
       return true;
     }

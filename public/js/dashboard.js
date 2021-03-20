@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", event => {
       const d = new Date();
       d.setDate(d.getDate() - 5);
       // eslint-disable-next-line no-unused-vars
-      const salesChart = Highcharts.chart("container", {
+      Highcharts.chart("container", {
         chart: {
           type: "line",
           zoomType: "x"
@@ -25,28 +25,30 @@ document.addEventListener("DOMContentLoaded", event => {
           text: "Weekly Sales Performance"
         },
         xAxis: {
-          type: "datetime"
-          // maxZoom: 48 * 3600 * 1000,
-          // tickInterval: 24 * 3600 * 1000,
-          // tickPositioner: function(min, max) {
-          //   var interval = this.options.tickInterval,
-          //     ticks = [],
-          //     count = 0;
+          type: "datetime",
+          maxZoom: 48 * 3600 * 1000,
+          tickInterval: 24 * 3600 * 1000,
+          tickPositioner: function(min, max) {
+            // eslint-disable-next-line prefer-const
+            let interval = this.options.tickInterval,
+              // eslint-disable-next-line prefer-const
+              ticks = [],
+              count = 0;
 
-          //   while (min < max) {
-          //     ticks.push(min);
-          //     min += interval;
-          //     count++;
-          //   }
+            while (min < max) {
+              ticks.push(min);
+              min += interval;
+              count++;
+            }
 
-          //   ticks.info = {
-          //     unitName: "day",
-          //     count: 1,
-          //     higherRanks: {},
-          //     totalRange: interval * count,
-          //   };
-          //   return ticks;
-          // },
+            ticks.info = {
+              unitName: "day",
+              count: 1,
+              higherRanks: {},
+              totalRange: interval * count
+            };
+            return ticks;
+          }
         },
         yAxis: {
           title: {
@@ -76,5 +78,4 @@ document.addEventListener("DOMContentLoaded", event => {
       });
       console.log(d);
     });
-  return salesChart;
 });

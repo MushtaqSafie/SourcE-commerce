@@ -117,7 +117,7 @@ router.post("/api/createAccount", (req, res) => {
   console.log(req.body);
   */
   //Check if the password and confirm password fields match
-  /*if (password === confirmPassword) {
+  if (password === confirmPassword) {
     //     //Check if user with the same email is registered
     if (customers.find(customer => customer.email === email)) {
       res.render("createAccount", {
@@ -126,75 +126,74 @@ router.post("/api/createAccount", (req, res) => {
       });
 
       return;
+      //Store user into database
     }
-    */
-  //Store user into database
-  const hashedPassword = crypt.getHashedPassword(password);
-  db.Customer.create({
-    first_name: firstName,
-    last_name: lastName,
-    email: email,
-    user_password: hashedPassword
-  }).then(result => console.log(result));
-  res.json({ id: "5" });
+    const hashedPassword = crypt.getHashedPassword(password);
+    db.Customer.create({
+      first_name: firstName,
+      last_name: lastName,
+      email: email,
+      user_password: hashedPassword
+    }).then(result => console.log(result));
+    res.json({ id: "5" });
 
-  //     // also create authToken and cookies authToken
-  /*res.render("salesDash", {
-    message: "Registration Complete. Continue to login please.",
-    messageClass: "alert-success"
-  });*/
-});
-
-const Sequelize = require("sequelize");
-const Op = Sequelize.Op;
-const startDate = new Date().getDate();
-const weekly = new Date().setDate(startDate - 7);
-
-router.get("/api/chartData", (req, res) => {
-  db.Orders.findAll({
-    include: [
-      {
-        model: db.Products,
-        attributes: ["product_name", "selling_price"]
-      }
-    ],
-    where: {
-      order_status: "confirmed-order",
-      createdAt: {
-        [Op.between]: [weekly, new Date()]
-      }
-    },
-    attributes: ["createdAt", "quantity", "order_status"]
-  }).then(data => {
-    const helper = [];
-    const result = [];
-
-    for (n = startDate; n > startDate - 8; n--) {
-      helper.push({ dateOrder: n, totalSale: 0 });
-    }
-
-    data.forEach(item => {
-      const i = item.dataValues;
-      const newObj = {
-        dateOrder: i.createdAt.getDate(),
-        totalSale: i.quantity * i.Product.selling_price
-      };
-      helper.push(newObj);
+    //     // also create authToken and cookies authToken
+    res.render("salesDash", {
+      message: "Registration Complete. Continue to login please.",
+      messageClass: "alert-success"
     });
+  }
+  const Sequelize = require("sequelize");
+  const Op = Sequelize.Op;
+  const startDate = new Date().getDate();
+  const weekly = new Date().setDate(startDate - 7);
 
-    helper.reduce((res, value) => {
-      if (!res[value.dateOrder]) {
-        res[value.dateOrder] = {
-          dateOrder: value.dateOrder,
-          totalSale: 0
-        };
-        result.push(res[value.dateOrder]);
+  router.get("/api/chartData", (req, res) => {
+    db.Orders.findAll({
+      include: [
+        {
+          model: db.Products,
+          attributes: ["product_name", "selling_price"]
+        }
+      ],
+      where: {
+        order_status: "confirmed-order",
+        createdAt: {
+          [Op.between]: [weekly, new Date()]
+        }
+      },
+      attributes: ["createdAt", "quantity", "order_status"]
+    }).then(data => {
+      const helper = [];
+      const result = [];
+
+      for (n = startDate; n > startDate - 8; n--) {
+        helper.push({ dateOrder: n, totalSale: 0 });
       }
-      res[value.dateOrder].totalSale += value.totalSale;
-      return res;
-    }, {});
 
-    res.json(result);
+      data.forEach(item => {
+        const i = item.dataValues;
+        const newObj = {
+          dateOrder: i.createdAt.getDate(),
+          totalSale: i.quantity * i.Product.selling_price
+        };
+        helper.push(newObj);
+      });
+
+      helper.reduce((res, value) => {
+        if (!res[value.dateOrder]) {
+          res[value.dateOrder] = {
+            dateOrder: value.dateOrder,
+            totalSale: 0
+          };
+          result.push(res[value.dateOrder]);
+        }
+        res[value.dateOrder].totalSale += value.totalSale;
+        return res;
+      }, {});
+
+      res.json(result);
+    });
   });
 });
 

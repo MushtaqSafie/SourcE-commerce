@@ -22,29 +22,22 @@ document.addEventListener("DOMContentLoaded", event => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
-        const user = data.first_name + " " + data.last_name;
+        // const user = data.first_name + " " + data.last_name;
+        // console.log(user);
 
         if (data.isValid) {
           // checking for client-type if its customer OR business-owner
           if (data.client_type === "business-owner") {
             // render salesDash
-            window.location.href = "/salesDash";
+            // window.location.href = "/salesDash";
             console.log("client is a business owner");
-            // display the first and last name of the user on sidebar
-            console.log(user);
-            // window.onload = () => {
-            //   const node = document.createElement("p");
-            //   const textnode = document.createTextNode(userData);
-            //   node.appendChild(textnode);
-            //   document.getElementById("loginUser").appendChild(node);
-            // };
 
-            // return user;
+            // display the first and last name of the user on sidebar
           } else {
             // client type is "customer" render StoreFront
-            window.location.href = "/storeFront";
+            // window.location.href = "/storeFront";
             console.log("client is a customer");
+
             // display the first and last name of the user on sidebar
             // document.getElementById("loginUser").appendChild(user);
           }

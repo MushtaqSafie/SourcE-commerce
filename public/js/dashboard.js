@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", event => {
       const d = new Date();
       d.setDate(d.getDate() - 5);
       // eslint-disable-next-line no-unused-vars
-      const salesChart = Highcharts.chart("container", {
+      Highcharts.chart("container", {
         chart: {
           type: "line",
           zoomType: "x"
@@ -76,5 +76,4 @@ document.addEventListener("DOMContentLoaded", event => {
       });
       console.log(d);
     });
-  return salesChart;
 });

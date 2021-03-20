@@ -200,6 +200,7 @@ router.get("/api/chartData", (req, res) => {
     const helper = [];
     const result = [];
 
+    // convert data format
     for (n = startDate; n > startDate - 8; n--) {
       helper.push({ dateOrder: n, totalSale: 0 });
     }

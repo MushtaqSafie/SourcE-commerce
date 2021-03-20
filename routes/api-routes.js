@@ -120,94 +120,94 @@ router.post("/api/index", (req, res) => {
 
 router.post("/api/createAccount", (req, res) => {
   // eslint-disable-next-line no-unused-vars
-  const { email, firstName, lastName, password, confirmPassword } = req.body;
+  const {
+    emailAddress,
+    firstName,
+    lastName,
+    password,
+    confirmPassword
+  } = req.body;
   /*console.log(password);
   console.log("data type: ", typeof req.body);
   console.log(req.body);
   */
+
   //Check if the password and confirm password fields match
-  if (password === confirmPassword) {
-    //     //Check if user with the same email is registered
-    if (
-      db.Customer.findOne({ where: { email } }).then(
-        customer => customer.email === email
-      )
-    ) {
-      res.render("createAccount", {
-        message: "User already created.",
-        messageClass: "alert-danger"
-      });
-
+  db.Customer.findOne({ where: { email: emailAddress } }).then(customer => {
+    //Check if user with the same email is registered
+    if (customer) {
+      res.json({ response: "User already created" });
       return;
-      //Store user into database
     }
-    findOne({ email });
-    const hashedPassword = crypt.getHashedPassword(password);
-    db.Customer.create({
-      first_name: firstName,
-      last_name: lastName,
-      email: email,
-      user_password: hashedPassword
-    }).then(result => console.log(result));
-    res.json({ id: "5" });
+    if (password === confirmPassword) {
+      // Check if the 'Are you a busines Owner" checked OR not
 
-    //     // also create authToken and cookies authToken
-    res.render("salesDash", {
-      message: "Registration Complete. Continue to login please.",
-      messageClass: "alert-success"
-    });
-  }
-  const Sequelize = require("sequelize");
-  const Op = Sequelize.Op;
-  const startDate = new Date().getDate();
-  const weekly = new Date().setDate(startDate - 7);
+      //Store user into database
+      const hashedPassword = crypt.getHashedPassword(password);
+      db.Customer.create({
+        first_name: firstName,
+        last_name: lastName,
+        email: emailAddress,
+        user_password: hashedPassword
+      }).then(result => console.log(result));
+      res.json({ response: "Registration Complete. Continue to login please" });
+      //     // also create authToken and cookies authToken
+      return;
+    }
+    res.json({ response: "Password does not match" });
+  });
+});
 
-  router.get("/api/chartData", (req, res) => {
-    db.Orders.findAll({
-      include: [
-        {
-          model: db.Products,
-          attributes: ["product_name", "selling_price"]
-        }
-      ],
-      where: {
-        order_status: "confirmed-order",
-        createdAt: {
-          [Op.between]: [weekly, new Date()]
-        }
-      },
-      attributes: ["createdAt", "quantity", "order_status"]
-    }).then(data => {
-      const helper = [];
-      const result = [];
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
+const startDate = new Date().getDate();
+const weekly = new Date().setDate(startDate - 7);
 
-      for (n = startDate; n > startDate - 8; n--) {
-        helper.push({ dateOrder: n, totalSale: 0 });
+router.get("/api/chartData", (req, res) => {
+  db.Orders.findAll({
+    include: [
+      {
+        model: db.Products,
+        attributes: ["product_name", "selling_price"]
       }
+    ],
+    where: {
+      order_status: "confirmed-order",
+      createdAt: {
+        [Op.between]: [weekly, new Date()]
+      }
+    },
+    attributes: ["createdAt", "quantity", "order_status"]
+  }).then(data => {
+    const helper = [];
+    const result = [];
 
-      data.forEach(item => {
-        const i = item.dataValues;
-        const newObj = {
-          dateOrder: i.createdAt.getDate(),
-          totalSale: i.quantity * i.Product.selling_price
-        };
-        helper.push(newObj);
-      });
+    for (n = startDate; n > startDate - 8; n--) {
+      helper.push({ dateOrder: n, totalSale: 0 });
+    }
 
-      helper.reduce((res, value) => {
-        if (!res[value.dateOrder]) {
-          res[value.dateOrder] = {
-            dateOrder: value.dateOrder,
-            totalSale: 0
-          };
-          result.push(res[value.dateOrder]);
-        }
-        res[value.dateOrder].totalSale += value.totalSale;
-        return res;
-      }, {});
-
-      res.json(result);
+    data.forEach(item => {
+      const i = item.dataValues;
+      const newObj = {
+        dateOrder: i.createdAt.getDate(),
+        totalSale: i.quantity * i.Product.selling_price
+      };
+      helper.push(newObj);
     });
+
+    helper.reduce((res, value) => {
+      if (!res[value.dateOrder]) {
+        res[value.dateOrder] = {
+          dateOrder: value.dateOrder,
+          totalSale: 0
+        };
+        result.push(res[value.dateOrder]);
+      }
+      res[value.dateOrder].totalSale += value.totalSale;
+      return res;
+    }, {});
+
+    res.json(result);
   });
 });
 

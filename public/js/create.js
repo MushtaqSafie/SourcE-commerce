@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", event => {
     const userData = {
       firstName: fnInput,
       lastName: lnInput,
-      email: emailInput,
+      emailAddress: emailInput,
       password: passwordInput,
       confirmPassword: confirmPasswordInput
     };
@@ -27,8 +27,10 @@ document.addEventListener("DOMContentLoaded", event => {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(userData)
-    }).then(result => {
-      console.log(result);
-    });
+    })
+      .then(result => result.json())
+      .then(data => {
+        console.log(data);
+      });
   });
 });

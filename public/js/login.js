@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener("DOMContentLoaded", event => {
   if (event) {
     console.info("Login DOM loaded 🚀");
   }

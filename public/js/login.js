@@ -1,10 +1,10 @@
+// document.onload = () => {
 document.addEventListener("DOMContentLoaded", event => {
   if (event) {
     console.info("Login DOM loaded 🚀");
   }
 
-  /* eslint-disable prettier/prettier */
-  document.getElementById("login-form").addEventListener("submit", (e) => {
+  document.getElementById("login-form").addEventListener("submit", e => {
     e.preventDefault();
     const emailInput = document.getElementById("email-address").value.trim();
     const passwordInput = document.getElementById("passwordInput").value.trim();
@@ -13,34 +13,31 @@ document.addEventListener("DOMContentLoaded", event => {
       method: "POST",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         email: emailInput,
-        password: passwordInput,
-      }),
+        password: passwordInput
+      })
     })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        const userData = data.first_name + " " + data.last_name;
-        const user = userData.toString();
+      .then(res => res.json())
+      .then(data => {
+        // const user = data.first_name + " " + data.last_name;
+        // console.log(user);
 
         if (data.isValid) {
           // checking for client-type if its customer OR business-owner
           if (data.client_type === "business-owner") {
             // render salesDash
-            // window.location.href = "/salesDash";
+            window.location.href = "/salesDash";
             console.log("client is a business owner");
-            // display the first and last name of the user on sidebar
-            console.log(user);
-            document.getElementById("loginUser").appendChild(user);
 
-            // return user;
+            // display the first and last name of the user on sidebar
           } else {
             // client type is "customer" render StoreFront
-            // window.location.href = "/storeFront";
+            window.location.href = "/storeFront";
             console.log("client is a customer");
+
             // display the first and last name of the user on sidebar
             // document.getElementById("loginUser").appendChild(user);
           }
@@ -55,3 +52,4 @@ document.addEventListener("DOMContentLoaded", event => {
       });
   });
 });
+// };

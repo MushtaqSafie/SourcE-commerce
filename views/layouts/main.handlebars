@@ -17,76 +17,11 @@
 <body>
   <div class="wrapper">
     {{#unless sidebar}}
-    <main id="indexContent">
-      <header>
-        <h1 class="indexHeading">{{heading}}</h1>
-      </header>
-
-      <div class="container-fluid">
-        {{{ body }}}
-      </div>
-    </main>
+    {{> navLinks/index-block}}
     {{/unless}}
 
     {{#if sidebar}}
-    <nav id="sidebar">
-      <div class="sidebar-header">
-        <h3>SourcE-commerce</h3>
-      </div>
-
-      <img class="user-img" src="{{user_image}}" alt="user-img" />
-      <div id="loginUser">
-      </div>
-
-      <ul class="list-unstyled components">
-        {{!-- {{#each client-type}}
-        {{#if business-owner}} --}}
-        <li class="active">
-          <a href="/salesDash">Sales</a>
-        </li>
-        <li>
-          <a href="/inventory">Inventory</a>
-        </li>
-        {{!-- {{/if}}
-        {{/each}} --}}
-      </ul>
-
-      {{!-- TEMP NAV LINKS --}}
-      <li class="active">
-        <a href="/">Login</a>
-      </li>
-      <li>
-        <a href="/createAccount">Create Account</a>
-      </li>
-      <li>
-        <a href="/salesDash">Sales Dashboard</a>
-      </li>
-      <li>
-        <a href="/inventory">Inventory</a>
-      </li>
-      <li>
-        <a href="/storeFront">Storefront</a>
-      </li>
-    </nav>
-
-    <main id="appContent">
-      <header>
-        <h1 class="appHeading">{{heading}}</h1>
-      </header>
-
-      <div class="container-fluid">
-        {{{ body }}}
-      </div>
-    </main>
-
-    {{!-- {{else}} --}}
-    <li>
-      <h2>Cart</h2>
-
-      {{cart-items}}
-
-      <button class="checkoutBtn">Checkout</button>
-    </li>
+    {{> navLinks/app-block}}
     {{/if}}
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -99,7 +34,8 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="login.js"></script>
+    {{!--
+    <script src="js/login.js"></script> --}}
 </body>
 
 </html>

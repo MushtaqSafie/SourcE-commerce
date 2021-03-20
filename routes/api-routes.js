@@ -30,6 +30,7 @@ router.get("/api/orders", (req, res) => {
   });
 });
 
+// post new product into the inventory
 router.post("/api/inventory", (req, res) => {
   // converting base64 data to binary
   const base64Data = req.body.product_image;
@@ -49,25 +50,32 @@ router.post("/api/inventory", (req, res) => {
   });
 });
 
-router.post("/api/orders", (req, res) => {
+// get new cart-item specific customer
+router.get("/api/cartItems/:id", (req, res) => {
+  db.Orders.findAll({
+    where: { CustomerId: req.params.id, order_status: "cart-item" }
+  }).then(result => res.json(result));
+});
+
+// post new cart-item into order list
+router.post("/api/cartItem", (req, res) => {
   db.Orders.create(req.body).then(result => res.json({ id: result.insertId }));
 });
 
-router.put("/api/orders/:id", (req, res) => {
-  db.Order.update(req.body, {
-    where: {
-      id: req.body.id
+// put cart-items of current user into confirmed-order
+router.put("/api/confirmedOrders/:id", (req, res) => {
+  db.Orders.update(
+    { order_status: "confirmed-order" },
+    { where: { CustomerId: req.params.id, order_status: "cart-item" } }
+  ).then(result => {
+    if (result.changedRows === 0) {
+      return res.status(404).end();
     }
-  }).then(result => res.json(result));
-  //   if (result.changedRows === 0) {
-  //     return res.status(404).end();
-  //   }
-  //   res.status(200).end();
-  // });
+    res.status(200).end();
+  });
 });
 
 // Authentication starts below
-
 const crypt = require("../config/crypto");
 const authTokens = {};
 
@@ -167,6 +175,7 @@ router.post("/api/createAccount", (req, res) => {
   });
 });
 
+// sales chart data
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const startDate = new Date().getDate();
@@ -195,6 +204,7 @@ router.get("/api/chartData", (req, res) => {
       helper.push({ dateOrder: n, totalSale: 0 });
     }
 
+    // convert data format
     data.forEach(item => {
       const i = item.dataValues;
       const newObj = {

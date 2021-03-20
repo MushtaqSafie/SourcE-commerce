@@ -31,6 +31,8 @@ document.getElementById("login-form").addEventListener("submit", e => {
           break;
         }
       } else {
+        window.location.href = "/index";
+        alert("Invalid username or password");
         // the is login user is not valid display a message 
       }
     });

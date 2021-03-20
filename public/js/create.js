@@ -26,9 +26,7 @@ document.addEventListener("DOMContentLoaded", event => {
         Accept: "application/json",
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({
-        userData
-      })
+      body: JSON.stringify(userData)
     }).then(result => {
       console.log(result);
     });

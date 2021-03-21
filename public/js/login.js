@@ -19,11 +19,10 @@ document.addEventListener("DOMContentLoaded", event => {
         email: emailInput,
         password: passwordInput,
       }),
-    })
-      .then((res) => {
-        console.log(res);
-        window.location.href = res.url;
-      });
+    }).then((res) => {
+      console.log(res);
+      window.location.href = res.url;
+    });
     // .then((data) => {
 
     //   const userData = data.first_name + " " + data.last_name;

@@ -61,6 +61,7 @@ router.post("/login", (req, res) => {
         customers[0].businessOwner = false;
         res.redirect(301, "/storeFront");
       }
+      return;
     }
     customers[0].isValid = false;
     customers[0].client_type = "wrongPass";
@@ -135,8 +136,6 @@ router.get("/salesDash", (req, res) => {
 router.get("/", (req, res) => {
   res.render("home");
 });
-
-
 router.get("/createAccount", (req, res) => {
   res.render("createAccount");
 });

@@ -75,67 +75,6 @@ router.put("/api/confirmedOrders/:id", (req, res) => {
   });
 });
 
-// Authentication starts below
-const crypt = require("../config/crypto");
-const authTokens = {};
-
-router.post("/api/index", (req, res) => {
-  const { email, password } = req.body;
-  const hashedPassword = crypt.getHashedPassword(password);
-  const customers = [];
-  // helo@me
-  // password
-
-  db.Customer.findOne({
-    where: { email: email },
-    attributes: [
-      "id",
-      "first_name",
-      "last_name",
-      "email",
-      "user_password",
-      "client_type"
-    ]
-  }).then(d => {
-    if (d === null) {
-      customers.push({
-        isValid: false,
-        client_type: "notFound",
-        user_password: ""
-      });
-      return res.json(customers[0]);
-    }
-    customers.push(d.dataValues);
-
-    const customer = customers.find(c => {
-      return (
-        c.email.toLowerCase() === email.toLowerCase() &&
-        hashedPassword === c.user_password
-      );
-    });
-
-    if (customer) {
-      const authToken = crypt.generateAuthToken();
-
-      authTokens[authToken] = email;
-      res.cookie("AuthToken", authToken);
-      res.send("Cookie sent!");
-
-      customers[0].isValid = true;
-      customers[0].first_name = d.first_name;
-      customers[0].last_name = d.last_name;
-      customers[0].client_type = d.client_type;
-      customers[0].user_password = "";
-      res.json(customers[0]);
-      return;
-    }
-    customers[0].isValid = false;
-    customers[0].client_type = "wrongPass";
-    customers[0].user_password = "";
-    res.json(customers[0]);
-  });
-});
-
 router.post("/api/createAccount", (req, res) => {
   // eslint-disable-next-line no-unused-vars
   const {
@@ -145,7 +84,6 @@ router.post("/api/createAccount", (req, res) => {
     password,
     confirmPassword
   } = req.body;
-  console.log(req.body);
   /*console.log(password);
   console.log("data type: ", typeof req.body);
   console.log(req.body);
@@ -160,9 +98,7 @@ router.post("/api/createAccount", (req, res) => {
     }
     if (password === confirmPassword) {
       // Check if the 'Are you a busines Owner" checked OR not
-      // db.Customer.findOne({ where: { client_type: business - owner } }).then(business - owner => {
 
-      // })
       //Store user into database
       const hashedPassword = crypt.getHashedPassword(password);
       db.Customer.create({

@@ -23,8 +23,7 @@ app.use(express.static("public"));
 app.engine(
   "handlebars",
   exphbs({
-    defaultLayout: "main",
-    helpers: require("./config/handlebars-helpers.js")
+    defaultLayout: "main"
   })
 );
 app.set("view engine", "handlebars");

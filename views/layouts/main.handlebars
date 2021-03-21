@@ -17,11 +17,93 @@
 <body>
   <div class="wrapper">
     {{#unless sidebar}}
-    {{> navLinks/index-block}}
+    <main id="indexContent">
+      <header>
+        <h1 class="indexHeading">{{heading}}</h1>
+      </header>
+
+      <div class="container-fluid">
+        {{{ body }}}
+      </div>
+    </main>
     {{/unless}}
 
+
     {{#if sidebar}}
-    {{> navLinks/app-block}}
+
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <h3>SourcE-commerce</h3>
+      </div>
+
+      {{!-- isValid means the user has signed in with valid username and password --}}
+      {{#if customerInfo.isValid}}
+      <div id="loginUser" data-id="{{{customerInfo.id}}">{{customerInfo.first_name}} {{customerInfo.last_name}}</div>
+
+      {{#if customerInfo.businessOwner}}
+      <div>user is business owner</div>
+      {{else}}
+      <div>user is a customer</div>
+      {{/if}}
+
+      {{/if}}
+
+      {{!-- <img class="user-img" src="{{user_image}}" alt="user-img" /> --}}
+      {{!-- <div id="loginUser"> --}}
+        {{!-- {{username}} --}}
+        {{!-- </div> --}}
+
+      <ul class="list-unstyled components">
+        {{log clientType}}
+        {{!-- {{#clientType type}} --}}
+        <li>
+          <h2>Cart</h2>
+
+          {{cart-items}}
+
+          <button class="checkoutBtn">Checkout</button>
+        </li>
+
+        {{!-- {{else}} --}}
+        <li class="active">
+          <a href="/salesDash">Sales</a>
+        </li>
+        <li>
+          <a href="/inventory">Inventory</a>
+        </li>
+        {{!-- {{/if}} --}}
+        {{!-- {{/each}} --}}
+      </ul>
+
+      {{!-- TEMP NAV LINKS --}}
+      <li class="active">
+        <a href="/">Login</a>
+      </li>
+      <li>
+        <a href="/createAccount">Create Account</a>
+      </li>
+      <li>
+        <a href="/salesDash">Sales Dashboard</a>
+      </li>
+      <li>
+        <a href="/inventory">Inventory</a>
+      </li>
+      <li>
+        <a href="/storeFront">Storefront</a>
+      </li>
+
+    </nav>
+
+    <main id="appContent">
+      <header>
+        <h1 class="appHeading">{{heading}}</h1>
+      </header>
+
+      <div class="container-fluid">
+        {{{ body }}}
+      </div>
+    </main>
+
     {{/if}}
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

@@ -30,7 +30,6 @@
 
 
     {{#if sidebar}}
-
     <nav id="sidebar">
       <div class="sidebar-header">
         <h3>SourcE-commerce</h3>
@@ -38,42 +37,38 @@
 
       {{!-- isValid means the user has signed in with valid username and password --}}
       {{#if customerInfo.isValid}}
-      <div id="loginUser" data-id="{{customerInfo.id}}">{{customerInfo.first_name}} {{customerInfo.last_name}}</div>
+      <ul id="sidebar-content" class="list-unstyled components">
+        {{#if customerInfo.businessOwner}}
+        <div id="loginUser" data-id="{{customerInfo.id}}">
+          {{!-- <img class="user-img" src="{{user_image}}" alt="user-img" /> --}}
+          <img class="user-img" src="img/bProfi.png" alt="businessUser-img" height="200" width="200" />
+          <h5 id="loginName">{{customerInfo.first_name}} {{customerInfo.last_name}}</h5>
+          (Business Account)
+        </div>
 
-      {{#if customerInfo.businessOwner}}
-      <div>user is business owner</div>
-      {{else}}
-      <div>user is a customer</div>
-      {{/if}}
-
-      {{/if}}
-
-      {{!-- <img class="user-img" src="{{user_image}}" alt="user-img" /> --}}
-      {{!-- <div id="loginUser"> --}}
-        {{!-- {{username}} --}}
-        {{!-- </div> --}}
-
-      <ul id="cartId"  class="list-unstyled components">
-        {{log clientType}}
-        {{!-- {{#clientType type}} --}}
-
-        <h2 > Cart</h2>
-
-        {{cart-items}}
-
-        <button class="checkoutBtn">Checkout</button>
-
-
-        {{!-- {{else}} --}}
         <li class="active">
           <a href="/salesDash">Sales</a>
         </li>
         <li>
           <a href="/inventory">Inventory</a>
         </li>
-        {{!-- {{/if}} --}}
-        {{!-- {{/each}} --}}
+        {{else}}
+        <div id="loginUser" data-id="{{customerInfo.id}}">
+          <img class="user-img" src="img/cProfi.png" alt="customerUser-img" height="200" width="200" />
+          <h5 id="loginName">{{customerInfo.first_name}} {{customerInfo.last_name}}</h5>
+          (Customer Account)
+        </div>
+
+        <h2>Cart</h2>
+
+        <div id="cartId">
+          {{cart-items}}
+        </div>
+
+        <button class="orderBtn">Place Order</button>
+        {{/if}}
       </ul>
+      {{/if}}
 
       {{!-- TEMP NAV LINKS --}}
       <li class="active">
@@ -116,8 +111,6 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
-    {{!--
-    <script src="js/login.js"></script> --}}
 </body>
 
 </html>

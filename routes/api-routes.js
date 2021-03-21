@@ -1,6 +1,8 @@
 const express = require("express");
 const fs = require("fs");
 const db = require("../models");
+const crypt = require("../config/crypto");
+const authTokens = {};
 
 const router = express.Router();
 

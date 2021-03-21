@@ -20,20 +20,8 @@ app.use(express.json());
 // Static directory
 app.use(express.static("public"));
 
-app.engine(
-  "handlebars",
-  exphbs({
-    defaultLayout: "main"
-  })
-);
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
-
-// Handlebars.registerHelper("clientType", type => {
-//   if (type === "customer") {
-//     return true;
-//   }
-//   return false;
-// });
 
 // Invoke routes
 app.use(htmlRouter);
@@ -52,7 +40,7 @@ app.use((req, res, next) => {
 
 // Syncing our sequelize models and then starting our Express app
 // !! REMOVE "{ force: true }" @ deployment !!
-db.sequelize.sync({force: true}).then(() => {
+db.sequelize.sync().then(() => {
   app.listen(PORT, () =>
     // eslint-disable-next-line implicit-arrow-linebreak
     console.log("Server listening on: http://localhost:" + PORT)

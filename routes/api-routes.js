@@ -2,7 +2,6 @@ const express = require("express");
 const fs = require("fs");
 const db = require("../models");
 const crypt = require("../config/crypto");
-const authTokens = {};
 
 const router = express.Router();
 
@@ -79,13 +78,7 @@ router.put("/api/confirmedOrders/:id", (req, res) => {
 
 router.post("/api/createAccount", (req, res) => {
   // eslint-disable-next-line no-unused-vars
-  const {
-    email,
-    firstName,
-    lastName,
-    password,
-    confirmPassword
-  } = req.body;
+  const { email, firstName, lastName, password, confirmPassword } = req.body;
   /*console.log(password);
   console.log("data type: ", typeof req.body);
   console.log(req.body);
@@ -94,7 +87,7 @@ router.post("/api/createAccount", (req, res) => {
   //Check if the password and confirm password fields match
   db.Customer.findOne({ where: { email: email } }).then(customer => {
     //db.Customer.findOne({ where: { email: email } }).then(customer.client_type == "business-owner" => {
-      //if(true)
+    //if(true)
     //Check if user with the same email is registered
     if (customer) {
       res.json({ response: "User already created" });

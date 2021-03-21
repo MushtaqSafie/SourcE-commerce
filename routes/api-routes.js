@@ -92,8 +92,8 @@ router.post("/api/createAccount", (req, res) => {
   //Check if the password and confirm password fields match
   console.log(Customer);
   db.Customer.findOne({ where: { email: emailAddress } }).then(customer => {
-    db.Customer.findOne({ where: { email: emailAddress } }).then(customer.client_type == "business-owner" => {
-      if(true)
+    //db.Customer.findOne({ where: { email: emailAddress } }).then(customer.client_type == "business-owner" => {
+      //if(true)
     //Check if user with the same email is registered
     if (customer) {
       res.json({ response: "User already created" });

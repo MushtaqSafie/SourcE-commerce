@@ -38,7 +38,7 @@
 
       {{!-- isValid means the user has signed in with valid username and password --}}
       {{#if customerInfo.isValid}}
-      <div id="loginUser" data-id="{{{customerInfo.id}}">{{customerInfo.first_name}} {{customerInfo.last_name}}</div>
+      <div id="loginUser" data-id="{{customerInfo.id}}">{{customerInfo.first_name}} {{customerInfo.last_name}}</div>
 
       {{#if customerInfo.businessOwner}}
       <div>user is business owner</div>

@@ -69,10 +69,16 @@
         <button class="orderBtn">Place Order</button>
       </div>
       {{/if}}
+      {{else}}
+      <ul class="business-sidebar list-unstyled components">
+        <li class="active">
+          <a href="/">Sign In here</a>
+        </li>
+      </ul>
       {{/if}}
 
       {{!-- TEMP NAV LINKS --}}
-      <br>
+      {{!-- <br>
       <li class="active">
         <a href="/">Login</a>
       </li>
@@ -87,7 +93,7 @@
       </li>
       <li>
         <a href="/storeFront">Storefront</a>
-      </li>
+      </li> --}}
     </nav>
 
     <main id="appContent">

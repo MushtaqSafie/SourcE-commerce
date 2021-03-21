@@ -30,6 +30,8 @@ router.post("/login", (req, res) => {
       customers.push({
         isValid: false,
         client_type: "notFound",
+        loginMessage:
+          "Please enter a valid email address and password. Or create a new account with us",
         user_password: ""
       });
       return res.redirect(301, "/");
@@ -65,6 +67,7 @@ router.post("/login", (req, res) => {
     }
     customers[0].isValid = false;
     customers[0].client_type = "wrongPass";
+    customers[0].loginMessage = "Your password is wrong please try again";
     customers[0].user_password = "";
     res.redirect(301, "/");
   });
@@ -144,13 +147,14 @@ router.post("/createAccount", (req, res) => {
 });
 
 router.get("/", (req, res) => {
-  db.Customer.findAll().then(data => {
-    const obj = data;
-    res.render("index", {
-      customer: obj,
-      heading: "Login Page",
-      sidebar: false
-    });
+  let msg = "";
+  if (customers[0]) {
+    msg = customers[0].loginMessage;
+  }
+  res.render("index", {
+    message: msg,
+    heading: "Login Page",
+    sidebar: false
   });
 });
 
@@ -201,7 +205,7 @@ router.get("/salesDash", (req, res) => {
         date: i.dataValues.createdAt,
         customerName: `${i.dataValues.Customer.first_name} ${i.dataValues.Customer.last_name}`,
         productName: i.dataValues.Product.product_name,
-        price: i.dataValues.Product.selling_price,
+        price: `$${i.dataValues.Product.selling_price}`,
         quantity: i.dataValues.quantity,
         total:
           parseInt(i.dataValues.Product.selling_price) *

@@ -43,4 +43,5 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+// database is ready here need to run seed.js from here. how to using; add a hook. sequelize migrations 
 module.exports = db;

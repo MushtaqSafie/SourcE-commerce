@@ -235,7 +235,7 @@ products.forEach(currentItem => {
 orders.forEach(currentItem => {
   db.Orders.create(currentItem).then(result => console.log(result));
 });
-// sequelize format using a hook (callback function) to allow seed.js to load after the db. 
+// sequelize format using a hook (callback function) to allow seed.js to load after the db.
 // include seed.js in server.js to allow work around; drop tables in workbench; run server.js;
 // then run again to load seed.js then remove seed.js to not duplicate data.
 //review sequelize data migration proper way to update/change database.

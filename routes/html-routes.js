@@ -222,7 +222,7 @@ router.get("/salesDash", (req, res) => {
     });
   });
 });
-
+// Defaulting to customer on my code// tested with login/js code and same outcome
 /* Authentication starts below
 router.get("/", (req, res) => {
   res.render("home");

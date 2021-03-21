@@ -13,6 +13,10 @@ p {
   color: #999;
 }
 
+a {
+  color: #fff
+}
+
 /* .wrapper {
   display: flex;
   width: 100%;

@@ -191,9 +191,23 @@ router.get("/inventory", (req, res) => {
 
 router.get("/salesDash", (req, res) => {
   db.Orders.findAll({
-    include: [db.Products, db.Customer]
+    include: [db.Products, db.Customer],
+    where: { order_status: "confirmed-order" }
   }).then(data => {
-    const obj = data;
+    const obj = [];
+    data.forEach(i => {
+      obj.push({
+        id: i.dataValues.id,
+        date: i.dataValues.createdAt,
+        customerName: `${i.dataValues.Customer.first_name} ${i.dataValues.Customer.last_name}`,
+        productName: i.dataValues.Product.product_name,
+        price: i.dataValues.Product.selling_price,
+        quantity: i.dataValues.quantity,
+        total:
+          parseInt(i.dataValues.Product.selling_price) *
+          parseInt(i.dataValues.quantity)
+      });
+    });
     // console.log(obj);
     console.log(customers[0]);
     res.render("salesDash", {

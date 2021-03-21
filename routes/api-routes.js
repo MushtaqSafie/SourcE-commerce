@@ -1,7 +1,6 @@
 const express = require("express");
 const fs = require("fs");
 const db = require("../models");
-const crypt = require("../config/crypto");
 const router = express.Router();
 
 router.get("/api/customers", (req, res) => {
@@ -72,46 +71,6 @@ router.put("/api/confirmedOrders/:id", (req, res) => {
       return res.status(404).end();
     }
     res.status(200).end();
-  });
-});
-
-router.post("/api/createAccount", (req, res) => {
-  // eslint-disable-next-line no-unused-vars
-  const {
-    emailAddress,
-    firstName,
-    lastName,
-    password,
-    confirmPassword
-  } = req.body;
-  /*console.log(password);
-  console.log("data type: ", typeof req.body);
-  console.log(req.body);
-  */
-
-  //Check if the password and confirm password fields match
-  db.Customer.findOne({ where: { email: emailAddress } }).then(customer => {
-    //Check if user with the same email is registered
-    if (customer) {
-      res.json({ response: "User already created" });
-      return;
-    }
-    if (password === confirmPassword) {
-      // Check if the 'Are you a busines Owner" checked OR not
-
-      //Store user into database
-      const hashedPassword = crypt.getHashedPassword(password);
-      db.Customer.create({
-        first_name: firstName,
-        last_name: lastName,
-        email: emailAddress,
-        user_password: hashedPassword
-      }).then(result => console.log(result));
-      res.json({ response: "Registration Complete. Continue to login please" });
-      //     // also create authToken and cookies authToken
-      return;
-    }
-    res.json({ response: "Password does not match" });
   });
 });
 

@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", event => {
   }
 
   const cartBtn = document.querySelectorAll(".cartBtnH");
-
+  const cart = document.getElementById("cartId");
+  console.log(cart);
   // -------- customer id needs to be update
   const customerDataId = document
     .getElementById("loginUser")
@@ -25,7 +26,12 @@ document.addEventListener("DOMContentLoaded", event => {
           quantity: 1,
           order_status: "cart-item"
         };
+        const li = document.createElement("li");
+        //element "TEST"
+        //li.appendChild(document.createTextNode(e.target.value));
 
+        cart.appendChild(li);
+        cart.text = "test";
         // Send POST request to create a new quote
         fetch("/api/cartItem", {
           method: "POST",
@@ -41,7 +47,7 @@ document.addEventListener("DOMContentLoaded", event => {
 
           // Reload the page so the user can see the new quote
           console.log("Created a new Cart Item");
-          location.reload();
+          // location.reload();
         });
       });
     });

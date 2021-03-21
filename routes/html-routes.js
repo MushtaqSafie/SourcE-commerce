@@ -61,7 +61,6 @@ router.post("/login", (req, res) => {
         customers[0].businessOwner = false;
         res.redirect(301, "/storeFront");
       }
-      return;
     }
     customers[0].isValid = false;
     customers[0].client_type = "wrongPass";

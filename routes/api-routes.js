@@ -78,7 +78,7 @@ router.put("/api/confirmedOrders/:id", (req, res) => {
 router.post("/api/createAccount", (req, res) => {
   // eslint-disable-next-line no-unused-vars
   const {
-    emailAddress,
+    email,
     firstName,
     lastName,
     password,
@@ -90,9 +90,8 @@ router.post("/api/createAccount", (req, res) => {
   */
 
   //Check if the password and confirm password fields match
-  console.log(Customer);
-  db.Customer.findOne({ where: { email: emailAddress } }).then(customer => {
-    //db.Customer.findOne({ where: { email: emailAddress } }).then(customer.client_type == "business-owner" => {
+  db.Customer.findOne({ where: { email: email } }).then(customer => {
+    //db.Customer.findOne({ where: { email: email } }).then(customer.client_type == "business-owner" => {
       //if(true)
     //Check if user with the same email is registered
     if (customer) {
@@ -107,7 +106,7 @@ router.post("/api/createAccount", (req, res) => {
       db.Customer.create({
         first_name: firstName,
         last_name: lastName,
-        email: emailAddress,
+        email: email,
         user_password: hashedPassword
       }).then(result => console.log(result));
       res.json({ response: "Registration Complete. Continue to login please" });

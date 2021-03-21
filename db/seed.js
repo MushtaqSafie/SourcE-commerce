@@ -41,35 +41,35 @@ const customers = [
 
 const products = [
   {
-    product_name: "First product",
+    product_name: "Nike",
     product_description: "Description of the product",
     inventory: 100,
-    purchase_price: 15.22,
-    selling_price: 49.99,
+    purchase_price: 19.99,
+    selling_price: 75.0,
     product_url: "/img/1.JPG"
   },
   {
-    product_name: "First product",
+    product_name: "Adidas",
     product_description: "Description of the product",
     inventory: 100,
-    purchase_price: 15.22,
+    purchase_price: 29.18,
     selling_price: 49.99,
     product_url: "/img/2.JPG"
   },
   {
-    product_name: "First product",
+    product_name: "Puma",
     product_description: "Description of the product",
     inventory: 100,
-    purchase_price: 15.22,
-    selling_price: 49.99,
+    purchase_price: 24.54,
+    selling_price: 56.6,
     product_url: "/img/3.JPG"
   },
   {
-    product_name: "First product",
+    product_name: "Oasics",
     product_description: "Description of the product",
     inventory: 100,
-    purchase_price: 15.22,
-    selling_price: 49.99,
+    purchase_price: 29.9,
+    selling_price: 85.0,
     product_url: "/img/4.JPG"
   }
 ];

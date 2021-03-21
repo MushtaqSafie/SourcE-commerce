@@ -12,7 +12,6 @@ const PORT = process.env.PORT || 8080;
 
 // Requiring our models for syncing
 const db = require("./models");
-const seed = require("./db/seed.js");
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));

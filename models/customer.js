@@ -22,7 +22,9 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: null
     },
     phone_number: {
-      type: DataTypes.INTEGER(10)
+      type: DataTypes.INTEGER(10),
+      allowNull: true,
+      defaultValue: null
     },
     // change to client-type & values = "customer", "business-owner"?
     client_type: {

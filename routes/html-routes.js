@@ -70,6 +70,79 @@ router.post("/login", (req, res) => {
   });
 });
 
+router.post("/createAccount", (req, res) => {
+  // eslint-disable-next-line no-unused-vars
+  const {
+    firstName,
+    lastName,
+    emailAddress,
+    password,
+    confirmPassword,
+    businessName,
+    phoneNumber,
+    selectBusiness
+  } = req.body;
+
+  console.log(req.body);
+
+  //Check if the password and confirm password fields match
+  db.Customer.findOne({ where: { email: emailAddress } }).then(data => {
+    //Check if user with the same email is registered
+
+    console.log(data);
+    if (data) {
+      // User already created
+      return res.redirect(301, "/createAccount");
+    }
+    customers.push({
+      isValid: false
+    });
+    if (password === confirmPassword) {
+      // Check if the 'Are you a busines Owner" checked OR not
+      // Store user into database
+      console.log(selectBusiness);
+      const hashedPassword = crypt.getHashedPassword(password);
+      if (selectBusiness) {
+        db.Customer.create({
+          first_name: firstName,
+          last_name: lastName,
+          email: emailAddress,
+          user_password: hashedPassword,
+          client_type: "business-owner",
+          business_name: businessName,
+          phone_number: parseInt(phoneNumber)
+        }).then(result => console.log(result));
+        customers[0].isValid = true;
+        customers[0].first_name = firstName;
+        customers[0].last_name = lastName;
+        customers[0].businessOwner = true;
+        return res.redirect(301, "/salesdash");
+      }
+
+      db.Customer.create({
+        first_name: firstName,
+        last_name: lastName,
+        email: emailAddress,
+        user_password: hashedPassword
+      }).then(result => console.log(result));
+      customers[0].isValid = true;
+      customers[0].first_name = firstName;
+      customers[0].last_name = lastName;
+      customers[0].businessOwner = false;
+      return res.redirect(301, "/storefront");
+
+      //   res.json({ response: "Registration Complete. Continue to login please" });
+      //   //     // also create authToken and cookies authToken
+      //   return;
+    }
+    // res.json({ response: "Password does not match" });
+    customers[0].isValid = false;
+    customers[0].client_type = "wrongPass";
+    customers[0].user_password = "";
+    return res.redirect(301, "/createAccount");
+  });
+});
+
 router.get("/", (req, res) => {
   db.Customer.findAll().then(data => {
     const obj = data;

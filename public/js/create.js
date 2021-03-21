@@ -14,46 +14,49 @@ document.addEventListener("DOMContentLoaded", event => {
       .value.trim();
     const businessInput = document.getElementById("business-name").value.trim();
     const phoneInput = document.getElementById("business-name").value.trim();
+    const businessSelect = document.getElementById("businessSelect").checked;
 
     const userData = {
       firstName: fnInput,
       lastName: lnInput,
-      email: emailInput,
+      emailAddress: emailInput,
       password: passwordInput,
       confirmPassword: confirmPasswordInput,
-      business_name: businessInput,
-      phone_number: phoneInput
+      businessName: businessInput,
+      phoneNumber: phoneInput,
+      selectBusiness: businessSelect
     };
 
-    console.log("something");
-    fetch("/api/createAccount", {
+    fetch("/createAccount", {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
       },
       body: JSON.stringify(userData)
-    })
-      .then(result => result.json())
-      .then(data => {
-        window.location.href = "/";
-        console.log(result);
-        console.log(data);
+    }).then(result => {
+      console.log(result);
+      window.location.href = result.url;
+    });
+    // .then(data => {
+    //   window.location.href = "/";
+    //   console.log(result);
+    //   console.log(data);
 
-        // ! Click listener if checkbox ticked, client type === "business-owner"
-        // get element by id for checkbox~
-        // if (data.isValid) {
-        // checking for client-type if its customer OR business-owner
-        //   if (data.client_type === "business-owner") {
-        // client type is "business-owner", render login
-        //     window.location.href = "/";
-        //     console.log("client is a business owner");
-        //   } else {
-        // client type is "customer", render login
-        //     window.location.href = "/";
-        //     console.log("client is a customer");
-        //   }
-        // }
-      });
+    // ! Click listener if checkbox ticked, client type === "business-owner"
+    // get element by id for checkbox~
+    // if (data.isValid) {
+    // checking for client-type if its customer OR business-owner
+    //   if (data.client_type === "business-owner") {
+    // client type is "business-owner", render login
+    //     window.location.href = "/";
+    //     console.log("client is a business owner");
+    //   } else {
+    // client type is "customer", render login
+    //     window.location.href = "/";
+    //     console.log("client is a customer");
+    //   }
+    // }
+    // });
   });
 });

@@ -20,8 +20,20 @@ app.use(express.json());
 // Static directory
 app.use(express.static("public"));
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.engine(
+  "handlebars",
+  exphbs({
+    defaultLayout: "main"
+  })
+);
 app.set("view engine", "handlebars");
+
+// Handlebars.registerHelper("clientType", type => {
+//   if (type === "customer") {
+//     return true;
+//   }
+//   return false;
+// });
 
 // Invoke routes
 app.use(htmlRouter);

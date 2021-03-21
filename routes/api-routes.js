@@ -30,6 +30,7 @@ router.get("/api/orders", (req, res) => {
   });
 });
 
+// post new product into the inventory
 router.post("/api/inventory", (req, res) => {
   // converting base64 data to binary
   const base64Data = req.body.product_image;
@@ -49,72 +50,28 @@ router.post("/api/inventory", (req, res) => {
   });
 });
 
-router.post("/api/orders", (req, res) => {
+// get new cart-item specific customer
+router.get("/api/cartItems/:id", (req, res) => {
+  db.Orders.findAll({
+    where: { CustomerId: req.params.id, order_status: "cart-item" }
+  }).then(result => res.json(result));
+});
+
+// post new cart-item into order list
+router.post("/api/cartItem", (req, res) => {
   db.Orders.create(req.body).then(result => res.json({ id: result.insertId }));
 });
 
-router.put("/api/orders/:id", (req, res) => {
-  db.Order.update(req.body, {
-    where: {
-      id: req.body.id
+// put cart-items of current user into confirmed-order
+router.put("/api/confirmedOrders/:id", (req, res) => {
+  db.Orders.update(
+    { order_status: "confirmed-order" },
+    { where: { CustomerId: req.params.id, order_status: "cart-item" } }
+  ).then(result => {
+    if (result.changedRows === 0) {
+      return res.status(404).end();
     }
-  }).then(result => res.json(result));
-  //   if (result.changedRows === 0) {
-  //     return res.status(404).end();
-  //   }
-  //   res.status(200).end();
-  // });
-});
-
-// Authentication starts below
-
-const crypt = require("../config/crypto");
-const authTokens = {};
-
-router.post("/api/index", (req, res) => {
-  const { email, password } = req.body;
-  const hashedPassword = crypt.getHashedPassword(password);
-  const customers = [];
-  // helo@me
-  // password
-
-  db.Customer.findOne({
-    where: { email: email },
-    attributes: ["id", "email", "user_password", "client_type"]
-  }).then(d => {
-    if (d === null) {
-      customers.push({
-        isValid: false,
-        client_type: "notFound",
-        user_password: ""
-      });
-      return res.json(customers[0]);
-    }
-    customers.push(d.dataValues);
-
-    const customer = customers.find(c => {
-      return (
-        c.email.toLowerCase() === email.toLowerCase() &&
-        hashedPassword === c.user_password
-      );
-    });
-
-    if (customer) {
-      const authToken = crypt.generateAuthToken();
-
-      authTokens[authToken] = email;
-      res.cookie("AuthToken", authToken);
-
-      customers[0].isValid = true;
-      customers[0].client_type = d.client_type;
-      customers[0].user_password = "";
-      res.json(customers[0]);
-      return;
-    }
-    customers[0].isValid = false;
-    customers[0].client_type = "wrongPass";
-    customers[0].user_password = "";
-    res.json(customers[0]);
+    res.status(200).end();
   });
 });
 
@@ -127,10 +84,11 @@ router.post("/api/createAccount", (req, res) => {
     password,
     confirmPassword
   } = req.body;
-  console.log(req.body);
   /*console.log(password);
   console.log("data type: ", typeof req.body);
+  console.log(req.body);
   */
+
   //Check if the password and confirm password fields match
   console.log(Customer);
   db.Customer.findOne({ where: { email: emailAddress } }).then(customer => {
@@ -162,6 +120,7 @@ router.post("/api/createAccount", (req, res) => {
   });
 });
 
+// sales chart data
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const startDate = new Date().getDate();
@@ -190,6 +149,7 @@ router.get("/api/chartData", (req, res) => {
       helper.push({ dateOrder: n, totalSale: 0 });
     }
 
+    // convert data format
     data.forEach(item => {
       const i = item.dataValues;
       const newObj = {

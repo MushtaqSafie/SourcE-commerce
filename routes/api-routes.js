@@ -74,7 +74,7 @@ router.put("/api/confirmedOrders/:id", (req, res) => {
   });
 });
 
-router.delete("/api/inventory/", (req, res) => {
+router.delete("/api/inventory/:id", (req, res) => {
   console.log(req.params);
   db.Products.destroy({
     where: { id: req.params.id }

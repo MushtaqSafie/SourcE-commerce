@@ -45,7 +45,7 @@
           (Business Account)
         </div>
         <hr>
-        <li class="active">
+        <li>
           <a href="/salesDash">Sales</a>
         </li>
         <li>
@@ -55,7 +55,7 @@
       {{else}}
       <div class="customer-sidebar components">
         <div id="loginUser" data-id="{{customerInfo.id}}">
-          <img class="user-img" src="img/cProfi.png" alt="customerUser-img" height="200" width="200" />
+          <img class="user-img" src="img/cProfi.png" alt="customerUser-img" height="100" width="100" />
           <h5 id="loginName">{{customerInfo.first_name}} {{customerInfo.last_name}}</h5>
           (Customer Account)
         </div>
@@ -63,7 +63,9 @@
         <h2>Cart</h2>
 
         <div class="col-md-12" id="cartId">
-          {{cart-items}}
+          {{#each cartItems}}
+          <div>* {{productName}} - ${{price}}</div>
+          {{/each}}
         </div>
 
         <button class="orderBtn">Place Order</button>

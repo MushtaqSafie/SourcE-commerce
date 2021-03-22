@@ -14,7 +14,7 @@ p {
 }
 
 a {
-  color: #fff
+  color: #fff;
 }
 
 /* .wrapper {
@@ -41,7 +41,7 @@ a {
 }
 
 .appHeading {
-  margin-left: 20px;
+  margin: 25px 0 15px 20px;
 }
 
 #sidebar {
@@ -56,8 +56,12 @@ a {
   overflow: auto;
 }
 
-#sidebar .sidebar-header {
+#sidebar .sidebar-header,
+#sidebar .customer-sidebar {
   padding: 20px;
+}
+
+#sidebar .sidebar-header {
   background: #6d7fcc;
 }
 
@@ -103,6 +107,10 @@ div label {
   margin-left: 25px;
 }
 
+.container-fluid {
+  padding-top: 10px;
+}
+
 /* Float four columns side by side */
 .column {
   float: left;
@@ -120,6 +128,14 @@ div label {
   content: "";
   display: table;
   clear: both;
+}
+
+#sales-chart {
+  padding-top: 15px;
+}
+
+#sales-table {
+  padding: 50px 15px 0 15px;
 }
 
 .add-photo {
@@ -153,7 +169,7 @@ div label {
   }
 
   .user-img {
-    visibility: hidden;
+    display: none;
   }
 
   #sidebar ul.components {

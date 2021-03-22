@@ -30,8 +30,8 @@ router.post("/login", (req, res) => {
       customers.push({
         isValid: false,
         client_type: "notFound",
-        loginMessage:
-          "Please enter a valid email address and password. Or create a new account with us",
+        loginMessage: "User not found, try again",
+        createMessage: "or Create account.",
         user_password: ""
       });
       return res.redirect(301, "/");
@@ -67,7 +67,7 @@ router.post("/login", (req, res) => {
     }
     customers[0].isValid = false;
     customers[0].client_type = "wrongPass";
-    customers[0].loginMessage = "Your password is wrong please try again";
+    customers[0].loginMessage = "Wrong password, try again";
     customers[0].user_password = "";
     res.redirect(301, "/");
   });
@@ -148,12 +148,15 @@ router.post("/createAccount", (req, res) => {
 
 router.get("/", (req, res) => {
   let msg = "";
+  let msg2 = "";
   if (customers[0]) {
     msg = customers[0].loginMessage;
+    msg2 = customers[0].createMessage;
   }
   res.render("index", {
     message: msg,
-    heading: "Login Page",
+    message2: msg2,
+    heading: "SourceE-commerce",
     sidebar: false
   });
 });
@@ -167,14 +170,40 @@ router.get("/createAccount", (req, res) => {
 
 router.get("/storeFront", (req, res) => {
   db.Products.findAll().then(data => {
-    const obj = data;
-    // console.log(obj);
-    console.log(customers[0]);
-    res.render("storeFront", {
-      customerInfo: customers[0],
-      products: obj,
-      heading: "Storefront",
-      sidebar: true
+    // if (customers[0].id) {
+    //   customers[0].id = "";
+    // }
+    if (customers) {
+      customers.push({
+        id: "",
+        isValid: false
+      });
+    }
+    db.Orders.findAll({
+      where: {
+        CustomerId: customers[0].id,
+        order_status: "cart-item"
+      },
+      include: [db.Products, db.Customer]
+    }).then(order => {
+      const obj = data;
+      // console.log(obj);
+      // console.log(order);
+      const cartItem = [];
+      order.forEach(item => {
+        cartItem.push({
+          productName: item.Product.product_name,
+          price: item.Product.selling_price
+        });
+      });
+      console.log(cartItem);
+      res.render("storeFront", {
+        cartItems: cartItem,
+        customerInfo: customers[0],
+        products: obj,
+        heading: "Storefront",
+        sidebar: true
+      });
     });
   });
 });
@@ -216,7 +245,7 @@ router.get("/salesDash", (req, res) => {
     console.log(customers[0]);
     res.render("salesDash", {
       customerInfo: customers[0],
-      orders: obj,
+      orders: obj.reverse(),
       heading: "Sales Dashboard",
       sidebar: true
     });

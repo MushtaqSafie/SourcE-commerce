@@ -26,12 +26,12 @@ document.addEventListener("DOMContentLoaded", event => {
           quantity: 1,
           order_status: "cart-item"
         };
-        const li = document.createElement("li");
+        // const li = document.createElement("li");
         //element "TEST"
         //li.appendChild(document.createTextNode(e.target.value));
 
-        cart.appendChild(li);
-        cart.text = "test";
+        // cart.appendChild(li);
+        // cart.text = "test";
         // Send POST request to create a new quote
         fetch("/api/cartItem", {
           method: "POST",
@@ -47,9 +47,29 @@ document.addEventListener("DOMContentLoaded", event => {
 
           // Reload the page so the user can see the new quote
           console.log("Created a new Cart Item");
-          // location.reload();
+          location.reload();
         });
       });
+    });
+  }
+
+  const orderBtn = document.querySelector(".orderBtn");
+
+  if (orderBtn) {
+    orderBtn.addEventListener("click", e => {
+      e.preventDefault();
+      const customerID = document
+        .getElementById("loginUser")
+        .getAttribute("data-id");
+
+      fetch(`/api/confirmedOrders/${customerID}`, {
+        method: "PUT",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        }
+      }).then(() => location.reload());
+      confirm("Thank you for your order!");
     });
   }
 

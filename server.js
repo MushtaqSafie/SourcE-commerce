@@ -11,14 +11,16 @@ const app = express();
 const authTokens = {};
 const PORT = process.env.PORT || 8080;
 
+let connection;
+
 if (process.env.JAWSDB_URL) {
-  connection = mysql2.createConnection(process.env.JAWSDB_URL);
+  connection = mysql2.createPool(process.env.JAWSDB_URL);
 } else {
-  connection = mysql2.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "yourRootPassword",
-    database: "SourcEcommerce"
+  connection = mysql2.createPool({
+    host: "lyn7gfxo996yjjco.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    user: "vbjyt7f8z3iz6ow5",
+    password: "eyxpxmnb8h7h4zjq",
+    database: "mj1dh6dhrbjbmsyb"
   });
 }
 

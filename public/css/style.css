@@ -14,7 +14,7 @@ p {
 }
 
 a {
-  color: #fff
+  color: #fff;
 }
 
 /* .wrapper {
@@ -120,6 +120,14 @@ div label {
   content: "";
   display: table;
   clear: both;
+}
+
+#sales-chart {
+  padding-top: 15px;
+}
+
+#sales-table {
+  padding: 50px 15px 0 15px;
 }
 
 .add-photo {

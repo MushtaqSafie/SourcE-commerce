@@ -41,7 +41,7 @@ a {
 }
 
 .appHeading {
-  margin-left: 20px;
+  margin: 25px 0 15px 20px;
 }
 
 #sidebar {
@@ -56,8 +56,12 @@ a {
   overflow: auto;
 }
 
-#sidebar .sidebar-header {
+#sidebar .sidebar-header,
+#sidebar .customer-sidebar {
   padding: 20px;
+}
+
+#sidebar .sidebar-header {
   background: #6d7fcc;
 }
 
@@ -101,6 +105,10 @@ div label {
 
 #createAcctBtn {
   margin-left: 25px;
+}
+
+.container-fluid {
+  padding-top: 10px;
 }
 
 /* Float four columns side by side */
@@ -161,7 +169,7 @@ div label {
   }
 
   .user-img {
-    visibility: hidden;
+    display: none;
   }
 
   #sidebar ul.components {

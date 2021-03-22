@@ -69,6 +69,7 @@ document.addEventListener("DOMContentLoaded", event => {
           "Content-Type": "application/json"
         }
       }).then(() => location.reload());
+      confirm("Thank you for your order!");
     });
   }
 

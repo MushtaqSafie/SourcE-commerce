@@ -45,7 +45,7 @@
           (Business Account)
         </div>
         <hr>
-        <li class="active">
+        <li>
           <a href="/salesDash">Sales</a>
         </li>
         <li>
@@ -63,7 +63,9 @@
         <h2>Cart</h2>
 
         <div class="col-md-12" id="cartId">
-          {{cart-items}}
+          {{#each cartItems}}
+          <div>* {{productName}} - ${{price}}</div>
+          {{/each}}
         </div>
 
         <button class="orderBtn">Place Order</button>

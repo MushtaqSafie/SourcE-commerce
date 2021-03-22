@@ -170,14 +170,40 @@ router.get("/createAccount", (req, res) => {
 
 router.get("/storeFront", (req, res) => {
   db.Products.findAll().then(data => {
-    const obj = data;
-    // console.log(obj);
-    console.log(customers[0]);
-    res.render("storeFront", {
-      customerInfo: customers[0],
-      products: obj,
-      heading: "Storefront",
-      sidebar: true
+    // if (customers[0].id) {
+    //   customers[0].id = "";
+    // }
+    if (customers) {
+      customers.push({
+        id: "",
+        isValid: false
+      });
+    }
+    db.Orders.findAll({
+      where: {
+        CustomerId: customers[0].id,
+        order_status: "cart-item"
+      },
+      include: [db.Products, db.Customer]
+    }).then(order => {
+      const obj = data;
+      // console.log(obj);
+      // console.log(order);
+      const cartItem = [];
+      order.forEach(item => {
+        cartItem.push({
+          productName: item.Product.product_name,
+          price: item.Product.selling_price
+        });
+      });
+      console.log(cartItem);
+      res.render("storeFront", {
+        cartItems: cartItem,
+        customerInfo: customers[0],
+        products: obj,
+        heading: "Storefront",
+        sidebar: true
+      });
     });
   });
 });
@@ -219,7 +245,7 @@ router.get("/salesDash", (req, res) => {
     console.log(customers[0]);
     res.render("salesDash", {
       customerInfo: customers[0],
-      orders: obj,
+      orders: obj.reverse(),
       heading: "Sales Dashboard",
       sidebar: true
     });

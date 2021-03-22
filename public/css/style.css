@@ -161,7 +161,7 @@ div label {
   }
 
   .user-img {
-    visibility: hidden;
+    display: none;
   }
 
   #sidebar ul.components {

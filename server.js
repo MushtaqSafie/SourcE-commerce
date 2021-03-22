@@ -12,9 +12,9 @@ const authTokens = {};
 const PORT = process.env.PORT || 8080;
 
 if (process.env.JAWSDB_URL) {
-  connection = mysql2.createConnection(process.env.JAWSDB_URL);
+  mysql2.createConnection(process.env.JAWSDB_URL);
 } else {
-  connection = mysql2.createConnection({
+  mysql2.createConnection({
     host: "localhost",
     user: "root",
     password: "yourRootPassword",

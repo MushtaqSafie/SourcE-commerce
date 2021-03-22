@@ -79,6 +79,26 @@ document.addEventListener("DOMContentLoaded", event => {
     });
   }
 
+  //DELETE
+  const deleteItemBtns = document.querySelectorAll(".delete-item");
+
+  deleteItemBtns.forEach(button => {
+    button.addEventListener("click", e => {
+      const id = e.target.getAttribute("data-id");
+
+      // Send the delete request
+      fetch(`/api/cartItem/${id}`, {
+        method: "DELETE"
+      }).then(res => {
+        console.log(res);
+        console.log(`Deleted item: ${id}`);
+
+        // Reload the page
+        // location.reload();
+      });
+    });
+  });
+
   // const newProductBtn = document.querySelectorAll(".products");
 
   // // Set up the event listener for the create button

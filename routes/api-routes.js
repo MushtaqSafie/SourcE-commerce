@@ -50,7 +50,7 @@ router.post("/api/inventory", (req, res) => {
 });
 
 // get new cart-item specific customer
-router.get("/api/cartItems/:id", (req, res) => {
+router.get("/api/cartItem/:id", (req, res) => {
   db.Orders.findAll({
     where: { CustomerId: req.params.id, order_status: "cart-item" }
   }).then(result => res.json(result));
@@ -68,6 +68,18 @@ router.put("/api/confirmedOrders/:id", (req, res) => {
     { where: { CustomerId: req.params.id, order_status: "cart-item" } }
   ).then(result => {
     if (result.changedRows === 0) {
+      return res.status(404).end();
+    }
+    res.status(200).end();
+  });
+});
+
+router.delete("/api/cartItem/:id", (req, res) => {
+  db.Orders.destroy({
+    include: [db.Products],
+    where: { ProductId: req.params.id, order_status: "cart-item" }
+  }).then(result => {
+    if (result.affectedRows === 0) {
       return res.status(404).end();
     }
     res.status(200).end();

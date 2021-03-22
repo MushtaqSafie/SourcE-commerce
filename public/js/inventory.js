@@ -85,6 +85,7 @@ document.addEventListener("DOMContentLoaded", event => {
   deleteItemBtns.forEach(button => {
     button.addEventListener("click", e => {
       const id = e.target.getAttribute("data-id");
+      console.log(id);
 
       // Send the delete request
       fetch(`/api/inventory/${id}`, {

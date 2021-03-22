@@ -1,3 +1,4 @@
+const mysql2 = require("mysql2");
 const express = require("express");
 const exphbs = require("express-handlebars");
 const htmlRouter = require("./routes/html-routes.js");
@@ -9,6 +10,17 @@ const bodyParser = require("body-parser");
 const app = express();
 const authTokens = {};
 const PORT = process.env.PORT || 8080;
+
+if (process.env.JAWSDB_URL) {
+  connection = mysql2.createConnection(process.env.JAWSDB_URL);
+} else {
+  connection = mysql2.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "yourRootPassword",
+    database: "SourcEcommerce"
+  });
+}
 
 // Requiring our models for syncing
 const db = require("./models");

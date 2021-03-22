@@ -77,7 +77,7 @@ router.put("/api/confirmedOrders/:id", (req, res) => {
 router.delete("/api/cartItem/:id", (req, res) => {
   db.Orders.destroy({
     include: [db.Products],
-    where: { ProductId: req.params.id, order_status: "cart-item" }
+    where: { ProductId: req.params.id }
   }).then(result => {
     if (result.affectedRows === 0) {
       return res.status(404).end();

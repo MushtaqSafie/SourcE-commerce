@@ -10,6 +10,17 @@ const app = express();
 const authTokens = {};
 const PORT = process.env.PORT || 8080;
 
+if (process.env.JAWSDB_URL) {
+  connection = mysql.createConnection(process.env.JAWSDB_URL);
+} else {
+  connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "yourRootPassword",
+    database: "SourcEcommerce"
+  });
+}
+
 // Requiring our models for syncing
 const db = require("./models");
 

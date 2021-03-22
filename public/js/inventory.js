@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", event => {
       const id = e.target.getAttribute("data-id");
 
       // Send the delete request
-      fetch(`/api/cartItem/${id}`, {
+      fetch(`/api/inventory/${id}`, {
         method: "DELETE"
       }).then(res => {
         console.log(res);
